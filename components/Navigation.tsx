@@ -18,17 +18,17 @@ export default function Navigation() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/">Home</Link>
+                <Link href="/">About</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/">Home</Link>
+                <Link href="/">Projects</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/">Home</Link>
+                <Link href="/">Contact</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
