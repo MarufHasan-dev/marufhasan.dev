@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-// import { cn } from "@repo/shadcn-ui/lib/utils";
 import { cn } from "@/lib/utils";
 
 interface MousePosition {
@@ -31,6 +30,8 @@ function useMousePosition(): MousePosition {
   return mousePosition;
 }
 
+import { useTheme } from "next-themes";
+
 export interface ParticlesProps {
   className?: string;
   quantity?: number;
@@ -38,7 +39,6 @@ export interface ParticlesProps {
   ease?: number;
   size?: number;
   refresh?: boolean;
-  color?: string;
   vx?: number;
   vy?: number;
 }
@@ -67,10 +67,16 @@ export const Particles: React.FC<ParticlesProps> = ({
   ease = 50,
   size = 0.4,
   refresh = false,
-  color = "#ffffff",
   vx = 0,
   vy = 0,
 }) => {
+  const { resolvedTheme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+
+  useEffect(() => {
+    setColor(resolvedTheme === "dark" ? "#ffffff" : "#000000");
+  }, [resolvedTheme]);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
@@ -86,10 +92,12 @@ export const Particles: React.FC<ParticlesProps> = ({
     }
     initCanvas();
     animate();
-    window.addEventListener("resize", initCanvas);
+
+    const resizeObserver = new ResizeObserver(initCanvas);
+    resizeObserver.observe(document.body);
 
     return () => {
-      window.removeEventListener("resize", initCanvas);
+      resizeObserver.disconnect();
     };
   }, [color]);
 
@@ -135,9 +143,14 @@ export const Particles: React.FC<ParticlesProps> = ({
 
   const resizeCanvas = () => {
     if (canvasContainerRef.current && canvasRef.current && context.current) {
+      const fullHeight = document.body.scrollHeight;
+      const fullWidth = document.body.clientWidth;
+
+      canvasContainerRef.current.style.height = `${fullHeight}px`;
+
       circles.current.length = 0;
-      canvasSize.current.w = canvasContainerRef.current.offsetWidth;
-      canvasSize.current.h = canvasContainerRef.current.offsetHeight;
+      canvasSize.current.w = fullWidth;
+      canvasSize.current.h = fullHeight;
       canvasRef.current.width = canvasSize.current.w * dpr;
       canvasRef.current.height = canvasSize.current.h * dpr;
       canvasRef.current.style.width = `${canvasSize.current.w}px`;

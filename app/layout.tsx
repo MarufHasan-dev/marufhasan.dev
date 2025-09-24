@@ -42,7 +42,6 @@ export default function RootLayout({
             quantity={100}
             ease={80}
             staticity={50}
-            color="#ffffff"
             size={0.8}
           />
         </ThemeProvider>
