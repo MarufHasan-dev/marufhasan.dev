@@ -1,4 +1,6 @@
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
 
 export default function Home() {
   return (
@@ -6,24 +8,10 @@ export default function Home() {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section
-          id="home"
-          className="min-h-screen flex items-center justify-center pt-16"
-        >
-          <p className="text-[var(--color-text-secondary)] text-xl">
-            Hero section coming next...
-          </p>
-        </section>
+        <Hero />
 
         {/* About Section */}
-        <section
-          id="about"
-          className="min-h-[50vh] flex items-center justify-center bg-[var(--color-bg-secondary)]"
-        >
-          <p className="text-[var(--color-text-secondary)] text-xl">
-            About section
-          </p>
-        </section>
+        <About />
 
         {/* Projects Section */}
         <section
