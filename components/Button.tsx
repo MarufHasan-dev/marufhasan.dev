@@ -52,7 +52,7 @@ export default function Button({
   const combinedClassName = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (props.as === "a") {
-    const { as, ...anchorProps } = props;
+    const { as: _as, ...anchorProps } = props;
     return (
       <a className={combinedClassName} {...anchorProps}>
         {children}
@@ -60,7 +60,7 @@ export default function Button({
     );
   }
 
-  const { as, ...buttonProps } = props as ButtonAsButton;
+  const { as: _as, ...buttonProps } = props as ButtonAsButton;
   return (
     <button className={combinedClassName} {...buttonProps}>
       {children}
