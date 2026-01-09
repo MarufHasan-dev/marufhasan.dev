@@ -3,6 +3,8 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Services from "@/components/Services";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -22,22 +24,11 @@ export default function Home() {
         <Services />
 
         {/* Contact Section */}
-        <section
-          id="contact"
-          className="min-h-[50vh] flex items-center justify-center"
-        >
-          <p className="text-[var(--color-text-secondary)] text-xl">
-            Contact section
-          </p>
-        </section>
-
-        {/* Footer */}
-        <footer className="py-8 border-t border-[var(--color-border)]">
-          <p className="text-center text-[var(--color-text-secondary)] text-sm">
-            Footer coming soon...
-          </p>
-        </footer>
+        <Contact />
       </main>
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }
