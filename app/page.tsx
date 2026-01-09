@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
+import Services from "@/components/Services";
 
 export default function Home() {
   return (
@@ -18,14 +19,7 @@ export default function Home() {
         <Projects />
 
         {/* Services Section */}
-        <section
-          id="services"
-          className="min-h-[50vh] flex items-center justify-center bg-[var(--color-bg-secondary)]"
-        >
-          <p className="text-[var(--color-text-secondary)] text-xl">
-            Services section
-          </p>
-        </section>
+        <Services />
 
         {/* Contact Section */}
         <section
