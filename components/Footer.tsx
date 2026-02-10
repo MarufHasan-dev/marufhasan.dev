@@ -11,7 +11,7 @@ const footerLinks = [
 
 const socialLinks = [
   {
-    href: "https://github.com",
+    href: "https://github.com/MarufHasan-dev",
     label: "GitHub",
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -24,7 +24,7 @@ const socialLinks = [
     ),
   },
   {
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/maruf-hasan-dev/",
     label: "LinkedIn",
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@ const socialLinks = [
     ),
   },
   {
-    href: "https://twitter.com",
+    href: "https://x.com/marufhasan_dev",
     label: "Twitter",
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ export default function Footer() {
 
   return (
     <footer className="py-12 bg-muted border-t border-border">
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+      <div className="mx-auto max-w-300 px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           {/* Logo & Copyright */}
           <div>
@@ -56,7 +56,7 @@ export default function Footer() {
               href="#home"
               className="text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
             >
-              Maruf.
+              Maruf Hasan
             </Link>
             <p className="mt-2 text-sm text-secondary">
               © {currentYear} Maruf Hasan. All rights reserved.

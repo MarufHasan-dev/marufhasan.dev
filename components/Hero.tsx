@@ -6,7 +6,7 @@ export default function Hero() {
       id="home"
       className="min-h-screen flex items-center justify-center pt-16 pb-24 bg-surface"
     >
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-8 text-center">
+      <div className="mx-auto max-w-300 px-6 lg:px-8 text-center">
         {/* Eyebrow text */}
         <p className="text-secondary text-sm md:text-base font-medium tracking-wide uppercase mb-4 animate-fade-in">
           Full-Stack Developer

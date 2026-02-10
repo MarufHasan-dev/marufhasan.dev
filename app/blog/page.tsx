@@ -90,7 +90,7 @@ export default function BlogPage() {
               href="/"
               className="text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
             >
-              Maruf.
+              Maruf Hasan
             </Link>
             <Link
               href="/"

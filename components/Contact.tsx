@@ -139,10 +139,10 @@ export default function Contact() {
                 <div>
                   <p className="text-sm text-secondary">Email</p>
                   <a
-                    href="mailto:hello@maruf.dev"
+                    href="mailto:marufdev.contact@gmail.com"
                     className="text-primary hover:text-accent transition-colors"
                   >
-                    hello@maruf.dev
+                    marufdev.contact@gmail.com
                   </a>
                 </div>
               </div>

@@ -81,7 +81,7 @@ export default function Navbar() {
               className="relative z-50 text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
               onClick={handleLinkClick}
             >
-              Maruf.
+              Maruf Hasan
             </Link>
 
             {/* Desktop Navigation */}
