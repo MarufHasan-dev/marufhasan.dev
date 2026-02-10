@@ -12,7 +12,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  // Initialize as true to prevent flash of transparent navbar on page load/refresh
+  const [isScrolled, setIsScrolled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -20,16 +21,17 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 10);
     };
 
+    // Check scroll position immediately on mount
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when clicking a link
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // Close mobile menu on escape key and handle body scroll
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -48,7 +50,6 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Close menu on window resize (when switching to desktop)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -65,19 +66,19 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-white/95 backdrop-blur-xl border-b border-[var(--color-border)]"
-            : "bg-transparent"
+            ? "bg-surface/95 backdrop-blur-xl border-b border-[#e5e5ea]"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
         <nav
-          className="mx-auto max-w-[1200px] px-6 lg:px-8"
+          className="mx-auto max-w-300 px-6 lg:px-8"
           aria-label="Main navigation"
         >
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link
               href="#home"
-              className="relative z-50 text-xl font-semibold text-[var(--color-text-primary)] hover:opacity-70 transition-opacity"
+              className="relative z-50 text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
               onClick={handleLinkClick}
             >
               Maruf.
@@ -89,7 +90,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+                    className="text-sm text-secondary hover:text-primary transition-colors"
                   >
                     {link.label}
                   </a>
@@ -98,7 +99,7 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+                  className="text-sm text-secondary hover:text-primary transition-colors"
                 >
                   Blog
                 </Link>
@@ -108,14 +109,13 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="relative z-50 md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-[var(--color-text-primary)] rounded-full hover:bg-[var(--color-bg-secondary)] transition-colors"
+              className="relative z-50 md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-primary rounded-full hover:bg-muted transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <div className="relative w-5 h-5">
-                {/* Hamburger lines that animate to X */}
                 <span
                   className={`absolute left-0 block w-5 h-0.5 bg-current transform transition-all duration-300 ease-in-out ${
                     isMobileMenuOpen
@@ -153,15 +153,13 @@ export default function Navbar() {
         }`}
         aria-hidden={!isMobileMenuOpen}
       >
-        {/* Background overlay */}
         <div
-          className={`absolute inset-0 bg-white transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-surface transition-opacity duration-500 ${
             isMobileMenuOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={handleLinkClick}
         />
 
-        {/* Menu content */}
         <div className="relative h-full flex flex-col justify-center px-6">
           <nav aria-label="Mobile navigation">
             <ul className="flex flex-col gap-2">
@@ -181,7 +179,7 @@ export default function Navbar() {
                 >
                   <a
                     href={link.href}
-                    className="block py-3 text-4xl sm:text-5xl font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                    className="block py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                     onClick={handleLinkClick}
                   >
                     {link.label}
@@ -202,7 +200,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/blog"
-                  className="block py-3 text-4xl sm:text-5xl font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                  className="block py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                   onClick={handleLinkClick}
                 >
                   Blog
@@ -211,7 +209,6 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          {/* Contact info at bottom */}
           <div
             className={`absolute bottom-12 left-6 right-6 transform transition-all duration-500 ease-out ${
               isMobileMenuOpen
@@ -222,14 +219,12 @@ export default function Navbar() {
               transitionDelay: isMobileMenuOpen ? "400ms" : "0ms",
             }}
           >
-            <p className="text-sm text-[var(--color-text-secondary)] mb-2">
-              Get in touch
-            </p>
+            <p className="text-sm text-secondary mb-2">Get in touch</p>
             <a
-              href="mailto:hello@maruf.dev"
-              className="text-lg text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+              href="mailto:marufdev.contact@gmail.com"
+              className="text-lg text-primary hover:text-accent transition-colors"
             >
-              hello@maruf.dev
+              marufdev.contact@gmail.com
             </a>
           </div>
         </div>

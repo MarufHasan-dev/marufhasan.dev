@@ -25,12 +25,11 @@ type ButtonAsLink = BaseButtonProps &
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-[var(--color-text-primary)] text-white hover:bg-[#333] active:bg-[#1a1a1a]",
+  primary: "bg-primary text-white hover:bg-primary/80 active:bg-primary/70",
   secondary:
-    "bg-transparent border border-[var(--color-border)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] active:bg-[var(--color-border)]",
+    "bg-transparent border border-border text-primary hover:bg-muted active:bg-border",
   ghost:
-    "bg-transparent text-[var(--color-accent)] hover:text-[#0066cc] active:text-[#004999]",
+    "bg-transparent text-accent hover:text-accent/80 active:text-accent/60",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -47,12 +46,13 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
   const combinedClassName = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (props.as === "a") {
-    const { as: _as, ...anchorProps } = props;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { as, ...anchorProps } = props;
     return (
       <a className={combinedClassName} {...anchorProps}>
         {children}
@@ -60,7 +60,8 @@ export default function Button({
     );
   }
 
-  const { as: _as, ...buttonProps } = props as ButtonAsButton;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { as, ...buttonProps } = props as ButtonAsButton;
   return (
     <button className={combinedClassName} {...buttonProps}>
       {children}

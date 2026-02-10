@@ -47,18 +47,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 bg-[var(--color-bg-secondary)] border-t border-[var(--color-border)]">
+    <footer className="py-12 bg-muted border-t border-border">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           {/* Logo & Copyright */}
           <div>
             <Link
               href="#home"
-              className="text-xl font-semibold text-[var(--color-text-primary)] hover:opacity-70 transition-opacity"
+              className="text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
             >
               Maruf.
             </Link>
-            <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
+            <p className="mt-2 text-sm text-secondary">
               © {currentYear} Maruf Hasan. All rights reserved.
             </p>
           </div>
@@ -71,14 +71,14 @@ export default function Footer() {
                   {link.href.startsWith("/") ? (
                     <Link
                       href={link.href}
-                      className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+                      className="text-sm text-secondary hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+                      className="text-sm text-secondary hover:text-primary transition-colors"
                     >
                       {link.label}
                     </a>
@@ -96,7 +96,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-[var(--color-bg-primary)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-text-secondary)] transition-all"
+                className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-secondary hover:text-primary hover:border-secondary transition-all"
                 aria-label={social.label}
               >
                 {social.icon}

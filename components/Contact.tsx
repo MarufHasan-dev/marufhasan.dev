@@ -30,14 +30,12 @@ export default function Contact() {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     } else if (formData.name.trim().length < 2) {
       newErrors.name = "Name must be at least 2 characters";
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
@@ -45,7 +43,6 @@ export default function Contact() {
       newErrors.email = "Please enter a valid email address";
     }
 
-    // Message validation
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
@@ -84,42 +81,38 @@ export default function Contact() {
       } else {
         setStatus("error");
         setServerMessage(
-          data.error || "Something went wrong. Please try again."
+          data.error || "Something went wrong. Please try again.",
         );
       }
     } catch {
       setStatus("error");
       setServerMessage(
-        "Network error. Please check your connection and try again."
+        "Network error. Please check your connection and try again.",
       );
     }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   return (
-    <section
-      id="contact"
-      className="py-[var(--section-padding)] bg-[var(--color-bg-primary)]"
-    >
+    <section id="contact" className="py-section bg-surface">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - Text */}
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)] tracking-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">
               Get In Touch
             </h2>
-            <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
+            <p className="text-lg md:text-xl text-secondary leading-relaxed mb-8">
               Have a project in mind or just want to say hello? I&apos;d love to
               hear from you. Fill out the form and I&apos;ll get back to you as
               soon as possible.
@@ -128,7 +121,7 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-secondary)] flex items-center justify-center text-[var(--color-text-secondary)]">
+                <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center text-secondary">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -144,12 +137,10 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-[var(--color-text-secondary)]">
-                    Email
-                  </p>
+                  <p className="text-sm text-secondary">Email</p>
                   <a
                     href="mailto:hello@maruf.dev"
-                    className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                    className="text-primary hover:text-accent transition-colors"
                   >
                     hello@maruf.dev
                   </a>
@@ -157,7 +148,7 @@ export default function Contact() {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-secondary)] flex items-center justify-center text-[var(--color-text-secondary)]">
+                <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center text-secondary">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -178,12 +169,8 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-[var(--color-text-secondary)]">
-                    Location
-                  </p>
-                  <p className="text-[var(--color-text-primary)]">
-                    Dhaka, Bangladesh
-                  </p>
+                  <p className="text-sm text-secondary">Location</p>
+                  <p className="text-primary">Dhaka, Bangladesh</p>
                 </div>
               </div>
             </div>
@@ -196,7 +183,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+                  className="block text-sm font-medium text-primary mb-2"
                 >
                   Name
                 </label>
@@ -206,10 +193,8 @@ export default function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-xl bg-[var(--color-bg-secondary)] border text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] transition-all ${
-                    errors.name
-                      ? "border-red-500"
-                      : "border-[var(--color-border)]"
+                  className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all ${
+                    errors.name ? "border-red-500" : "border-border"
                   }`}
                   placeholder="Your name"
                   aria-describedby={errors.name ? "name-error" : undefined}
@@ -230,7 +215,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+                  className="block text-sm font-medium text-primary mb-2"
                 >
                   Email
                 </label>
@@ -240,10 +225,8 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-xl bg-[var(--color-bg-secondary)] border text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] transition-all ${
-                    errors.email
-                      ? "border-red-500"
-                      : "border-[var(--color-border)]"
+                  className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all ${
+                    errors.email ? "border-red-500" : "border-border"
                   }`}
                   placeholder="your@email.com"
                   aria-describedby={errors.email ? "email-error" : undefined}
@@ -264,7 +247,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+                  className="block text-sm font-medium text-primary mb-2"
                 >
                   Message
                 </label>
@@ -274,10 +257,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className={`w-full px-4 py-3 rounded-xl bg-[var(--color-bg-secondary)] border text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] transition-all resize-none ${
-                    errors.message
-                      ? "border-red-500"
-                      : "border-[var(--color-border)]"
+                  className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all resize-none ${
+                    errors.message ? "border-red-500" : "border-border"
                   }`}
                   placeholder="Tell me about your project..."
                   aria-describedby={

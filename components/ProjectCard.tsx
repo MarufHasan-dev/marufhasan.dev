@@ -20,10 +20,10 @@ export default function ProjectCard({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block rounded-2xl bg-[var(--color-bg-secondary)] overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+      className="group block rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
     >
       {/* Project Image */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-border)]">
+      <div className="relative aspect-[16/10] overflow-hidden bg-border">
         <Image
           src={image}
           alt={title}
@@ -35,10 +35,10 @@ export default function ProjectCard({
 
       {/* Project Info */}
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-accent)] transition-colors">
+        <h3 className="text-xl font-semibold text-primary mb-2 group-hover:text-accent transition-colors">
           {title}
         </h3>
-        <p className="text-[var(--color-text-secondary)] text-base leading-relaxed mb-4">
+        <p className="text-secondary text-base leading-relaxed mb-4">
           {description}
         </p>
 
@@ -47,7 +47,7 @@ export default function ProjectCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-primary)] rounded-full border border-[var(--color-border)]"
+              className="px-3 py-1 text-xs font-medium text-secondary bg-surface rounded-full border border-border"
             >
               {tag}
             </span>

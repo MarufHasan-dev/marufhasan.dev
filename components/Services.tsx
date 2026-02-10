@@ -131,17 +131,14 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section
-      id="services"
-      className="py-[var(--section-padding)] bg-[var(--color-bg-secondary)]"
-    >
+    <section id="services" className="py-section bg-muted">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[var(--color-text-primary)] tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">
             Services
           </h2>
-          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed">
+          <p className="text-lg md:text-xl text-secondary leading-relaxed">
             I offer a range of services to help bring your ideas to life. From
             concept to deployment, I&apos;m here to help at every stage.
           </p>
@@ -152,20 +149,20 @@ export default function Services() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group p-8 rounded-2xl bg-[var(--color-bg-primary)] border border-[var(--color-border)] transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="group p-8 rounded-2xl bg-surface border border-border transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
             >
               {/* Icon */}
-              <div className="w-14 h-14 rounded-xl bg-[var(--color-bg-secondary)] flex items-center justify-center text-[var(--color-text-primary)] mb-6 group-hover:bg-[var(--color-accent)] group-hover:text-white transition-colors">
+              <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center text-primary mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-3">
+              <h3 className="text-xl font-semibold text-primary mb-3">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[var(--color-text-secondary)] leading-relaxed">
+              <p className="text-secondary leading-relaxed">
                 {service.description}
               </p>
             </div>
