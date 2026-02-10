@@ -86,8 +86,8 @@ function generateEmailHTML(data: ContactFormData): string {
                   <td style="padding: 24px;">
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td width="60" valign="top">
-                          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 48px; color: #ffffff; font-size: 20px; font-weight: 600;">
+                        <td width="60" valign="top" style="text-align: center;">
+                          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%); border-radius: 50%; text-align: center; line-height: 48px; color: #ffffff; font-size: 20px; font-weight: 600;">
                             ${name.charAt(0).toUpperCase()}
                           </div>
                         </td>
