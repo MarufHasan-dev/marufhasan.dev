@@ -2,22 +2,38 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Maruf Hasan | Full-Stack Developer Portfolio",
+  metadataBase: new URL("https://marufhasan.dev"),
+
+  title: {
+    default: "Maruf Hasan – Full-Stack Developer",
+    template: "%s | Maruf Hasan",
+  },
+
   description:
-    "Full-stack developer specializing in modern web technologies. Building elegant, performant, and user-focused digital experiences.",
+    "Maruf Hasan is a full-stack web developer specializing in React, Next.js, and TypeScript. View projects, skills, and blog posts.",
+
   keywords: [
-    "full-stack developer",
-    "web developer",
-    "portfolio",
-    "React",
-    "Next.js",
-    "TypeScript",
+    "Maruf Hasan",
+    "Maruf Hasan developer",
+    "Full-stack developer",
+    "Web developer portfolio",
+    "React developer",
+    "Next.js developer",
+    "TypeScript developer",
   ],
+
   authors: [{ name: "Maruf Hasan" }],
+
+  alternates: {
+    canonical: "/",
+  },
+
   openGraph: {
-    title: "Maruf Hasan | Full-Stack Developer Portfolio",
+    title: "Maruf Hasan – Full-Stack Developer",
     description:
-      "Full-stack developer specializing in modern web technologies.",
+      "Portfolio website of Maruf Hasan, a full-stack web developer building modern, high-performance web applications.",
+    url: "https://marufhasan.dev",
+    siteName: "Maruf Hasan",
     type: "website",
     locale: "en_US",
   },
@@ -25,9 +41,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className="antialiased">{children}</body>
