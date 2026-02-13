@@ -17,7 +17,7 @@ const skills = [
 export default function About() {
   return (
     <section id="about" className="py-section bg-muted">
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+      <div className="mx-auto max-w-300 px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">

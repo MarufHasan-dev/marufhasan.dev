@@ -105,7 +105,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-section bg-surface">
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+      <div className="mx-auto max-w-300 px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - Text */}
           <div>

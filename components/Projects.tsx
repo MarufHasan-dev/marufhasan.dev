@@ -54,7 +54,7 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="py-section bg-surface">
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+      <div className="mx-auto max-w-300 px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">

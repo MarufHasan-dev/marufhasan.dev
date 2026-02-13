@@ -84,7 +84,7 @@ export default function BlogPage() {
     <>
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-border">
-        <nav className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <nav className="mx-auto max-w-300 px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link
               href="/"
@@ -105,7 +105,7 @@ export default function BlogPage() {
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-section bg-muted">
-          <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+          <div className="mx-auto max-w-300 px-6 lg:px-8">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-primary tracking-tight mb-6">
               Blog
             </h1>
@@ -119,7 +119,7 @@ export default function BlogPage() {
 
         {/* Blog Posts List */}
         <section className="py-section bg-surface">
-          <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+          <div className="mx-auto max-w-300 px-6 lg:px-8">
             <div className="grid gap-12">
               {blogPosts.map((post) => (
                 <article
@@ -178,7 +178,7 @@ export default function BlogPage() {
 
       {/* Footer */}
       <footer className="py-8 bg-muted border-t border-border">
-        <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="mx-auto max-w-300 px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <p className="text-sm text-secondary">
               © {new Date().getFullYear()} Maruf Hasan. All rights reserved.
