@@ -23,7 +23,7 @@ export default function ProjectCard({
       className="group block rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
     >
       {/* Project Image */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-border">
+      <div className="relative aspect-16/10 overflow-hidden bg-border">
         <Image
           src={image}
           alt={title}
