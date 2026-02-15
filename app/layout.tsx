@@ -81,28 +81,31 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {/* Structured Data for Google */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
+              "@id": "https://marufhasan.dev/#person",
               name: "Maruf Hasan",
               url: "https://marufhasan.dev",
               jobTitle: "Full-Stack Web Developer",
               knowsAbout: [
+                "Web Development",
+                "Frontend Development",
+                "Backend Development",
                 "React",
                 "Next.js",
                 "TypeScript",
                 "Node.js",
-                "Web Development",
               ],
               sameAs: [
                 "https://github.com/MarufHasan-dev",
                 "https://www.linkedin.com/in/maruf-hasan-dev/",
                 "https://x.com/marufhasan_dev",
               ],
+              image: "https://marufhasan.dev/og.png",
             }),
           }}
         />
