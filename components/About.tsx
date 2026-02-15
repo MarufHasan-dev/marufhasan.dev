@@ -24,10 +24,10 @@ export default function About() {
             About Me
           </h2>
           <p className="text-lg md:text-xl text-secondary leading-relaxed mb-6">
-            I&apos;m a full-stack developer passionate about creating beautiful,
-            functional, and user-centered digital experiences. With a strong
-            foundation in both frontend and backend technologies, I bring ideas
-            to life through clean code and thoughtful design.
+            I&apos;m a full-stack web developer passionate about creating
+            beautiful, functional, and user-centered digital experiences. With a
+            strong foundation in both frontend and backend technologies, I bring
+            ideas to life through clean code and thoughtful design.
           </p>
           <p className="text-lg md:text-xl text-secondary leading-relaxed">
             When I&apos;m not coding, you&apos;ll find me exploring new

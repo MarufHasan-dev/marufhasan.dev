@@ -3,11 +3,11 @@ import Link from "next/link";
 import { blogPosts } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Blog | Maruf Hasan - Full-Stack Developer",
+  title: "Blog | Maruf Hasan - Full-Stack Web Developer",
   description:
     "Thoughts on web development, programming, design, and building products. Articles about React, Next.js, TypeScript, and more.",
   openGraph: {
-    title: "Blog | Maruf Hasan - Full-Stack Developer",
+    title: "Blog | Maruf Hasan - Full-Stack Web Developer",
     description:
       "Thoughts on web development, programming, design, and building products.",
     type: "website",

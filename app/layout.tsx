@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://marufhasan.dev"),
 
   title: {
-    default: "Maruf Hasan – Full-Stack Developer",
+    default: "Maruf Hasan – Full-Stack Web Developer",
     template: "%s | Maruf Hasan",
   },
 
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   keywords: [
     "Maruf Hasan",
     "Maruf Hasan developer",
-    "Full-stack developer",
+    "Full-stack web developer",
     "Web developer portfolio",
     "React developer",
     "Next.js developer",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Maruf Hasan – Full-Stack Developer",
+    title: "Maruf Hasan – Full-Stack Web Developer",
     description:
       "Portfolio website of Maruf Hasan, a full-stack web developer building modern, high-performance web applications.",
     url: "https://marufhasan.dev",
@@ -46,16 +46,16 @@ export const metadata: Metadata = {
         url: "https://marufhasan.dev/og.png",
         width: 1200,
         height: 630,
-        alt: "Maruf Hasan – Full-Stack Developer",
+        alt: "Maruf Hasan – Full-Stack Web Developer",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Maruf Hasan – Full-Stack Developer",
+    title: "Maruf Hasan – Full-Stack Web Developer",
     description:
-      "Portfolio website of Maruf Hasan, a full-stack web developer building modern, high-performance web applications.",
+      "Portfolio website of Maruf Hasan, a full-stack web developer building modern, high-performance web applications",
     creator: "@marufhasan_dev",
     images: ["https://marufhasan.dev/og.png"],
   },
@@ -90,7 +90,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "Maruf Hasan",
               url: "https://marufhasan.dev",
-              jobTitle: "Full-Stack Developer",
+              jobTitle: "Full-Stack Web Developer",
               knowsAbout: [
                 "React",
                 "Next.js",

@@ -9,12 +9,12 @@ export default function Hero() {
       <div className="mx-auto max-w-300 px-6 lg:px-8 text-center">
         {/* Eyebrow text */}
         <p className="text-secondary text-sm md:text-base font-medium tracking-wide uppercase mb-4 animate-fade-in">
-          Full-Stack Developer
+          Full-Stack Web Developer
         </p>
 
         {/* Main heading - Single H1 for SEO */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-tight leading-[1.1] mb-6 animate-fade-in-up">
-          Hi, I&apos;m Maruf.
+          Hi, I&apos;m Maruf Hasan
           <br />
           <span className="text-secondary">I build things for the web.</span>
         </h1>
@@ -22,7 +22,7 @@ export default function Hero() {
         {/* Subtitle */}
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary leading-relaxed mb-10 animate-fade-in-up-delay">
           I craft elegant, performant, and user-focused digital experiences.
-          Specializing in React, Next.js, and modern full-stack development.
+          Specializing in React, Next.js, and modern full-stack web development.
         </p>
 
         {/* CTA Buttons */}
