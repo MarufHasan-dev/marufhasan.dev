@@ -5,7 +5,6 @@ interface ProjectCardProps {
   description: string;
   image: string;
   tags: string[];
-  href?: string;
 }
 
 export default function ProjectCard({
@@ -13,15 +12,9 @@ export default function ProjectCard({
   description,
   image,
   tags,
-  href = "#",
 }: ProjectCardProps) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-    >
+    <div className="group block rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       {/* Project Image */}
       <div className="relative aspect-16/10 overflow-hidden bg-border">
         <Image
@@ -54,6 +47,6 @@ export default function ProjectCard({
           ))}
         </div>
       </div>
-    </a>
+    </div>
   );
 }

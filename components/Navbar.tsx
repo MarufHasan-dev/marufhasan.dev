@@ -4,16 +4,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#services", label: "Services" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#services", label: "Services" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
-  // Initialize as true to prevent flash of transparent navbar on page load/refresh
-  const [isScrolled, setIsScrolled] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -66,7 +65,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-surface/95 backdrop-blur-xl border-b border-border"
+            ? "bg-surface/80 backdrop-blur-xl border-b border-border"
             : "bg-transparent border-b border-transparent"
         }`}
       >
@@ -77,7 +76,7 @@ export default function Navbar() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link
-              href="#home"
+              href="/"
               className="relative z-50 text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
               onClick={handleLinkClick}
             >
@@ -88,12 +87,12 @@ export default function Navbar() {
             <ul className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-secondary hover:text-primary transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li>
@@ -177,13 +176,13 @@ export default function Navbar() {
                       : "0ms",
                   }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className="block py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                     onClick={handleLinkClick}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li

@@ -1,55 +1,5 @@
 import ProjectCard from "./ProjectCard";
-
-const projects = [
-  {
-    title: "E-Commerce Platform",
-    description:
-      "A modern, full-featured e-commerce platform with real-time inventory, secure payments, and an intuitive admin dashboard.",
-    image: "/projects/ecommerce.svg",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    href: "#",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "Collaborative task management tool with real-time updates, drag-and-drop interface, and team workspaces.",
-    image: "/projects/taskapp.svg",
-    tags: ["React", "Node.js", "Socket.io", "MongoDB"],
-    href: "#",
-  },
-  {
-    title: "Analytics Dashboard",
-    description:
-      "Data visualization dashboard featuring interactive charts, custom reports, and real-time metrics tracking.",
-    image: "/projects/analytics.svg",
-    tags: ["Next.js", "D3.js", "Python", "AWS"],
-    href: "#",
-  },
-  {
-    title: "Social Media App",
-    description:
-      "Feature-rich social platform with stories, messaging, and AI-powered content recommendations.",
-    image: "/projects/social.svg",
-    tags: ["React Native", "GraphQL", "Redis", "TensorFlow"],
-    href: "#",
-  },
-  {
-    title: "AI Writing Assistant",
-    description:
-      "AI-powered writing tool that helps users create, edit, and improve their content with smart suggestions.",
-    image: "/projects/ai-writer.svg",
-    tags: ["Next.js", "OpenAI", "Vercel AI SDK", "Prisma"],
-    href: "#",
-  },
-  {
-    title: "Fitness Tracker",
-    description:
-      "Comprehensive fitness app with workout tracking, nutrition logging, and personalized training plans.",
-    image: "/projects/fitness.svg",
-    tags: ["React Native", "Node.js", "PostgreSQL", "Charts"],
-    href: "#",
-  },
-];
+import { projects } from "@/lib/data";
 
 export default function Projects() {
   return (
@@ -75,7 +25,6 @@ export default function Projects() {
               description={project.description}
               image={project.image}
               tags={project.tags}
-              href={project.href}
             />
           ))}
         </div>
