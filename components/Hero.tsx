@@ -67,7 +67,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 variant="ghost"
                 size="lg"
-                className="gap-2"
+                className="gap-2 border border-border text-primary hover:bg-muted hover:text-primary active:bg-border active:text-primary"
               >
                 <svg
                   className="w-5 h-5"
