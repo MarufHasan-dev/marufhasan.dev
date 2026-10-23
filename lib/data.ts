@@ -5,9 +5,31 @@ export interface Project {
   description: string;
   image?: string;
   tags: string[];
+  links?: { label: string; url: string }[];
 }
 
 export const projects: Project[] = [
+  {
+    title: "Orbitally.tech — Studio Platform & API Product",
+    description:
+      "A production-ready studio website and developer platform built from the ground up. Features a custom animated WebGL hero, responsive service pages, a live API playground, schema-generated developer documentation, pricing pages, and security-hardened server endpoints. Includes Cloudflare Turnstile verification, Redis-backed rate limiting, contact-data masking, and automated tests.",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Upstash Redis",
+      "Cloudflare Turnstile",
+      "Vercel",
+    ],
+    links: [
+      { label: "Live Website", url: "https://orbitally.tech" },
+      {
+        label: "Product Page",
+        url: "https://orbitally.tech/products/company-enrichment-api",
+      },
+    ],
+  },
   {
     title: "Company Enrichment API",
     description:

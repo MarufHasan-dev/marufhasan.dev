@@ -25,6 +25,7 @@ export default function Projects() {
               description={project.description}
               image={project.image}
               tags={project.tags}
+              links={project.links}
             />
           ))}
         </div>

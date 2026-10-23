@@ -5,6 +5,7 @@ interface ProjectCardProps {
   description: string;
   image?: string;
   tags: string[];
+  links?: { label: string; url: string }[];
 }
 
 export default function ProjectCard({
@@ -12,6 +13,7 @@ export default function ProjectCard({
   description,
   image,
   tags,
+  links,
 }: ProjectCardProps) {
   return (
     <div className="group block cursor-pointer rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
@@ -48,6 +50,23 @@ export default function ProjectCard({
             </span>
           ))}
         </div>
+
+        {links && links.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4">
+            {links.map((link) => (
+              <a
+                key={link.label}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-accent hover:underline focus-visible:underline"
+              >
+                {link.label}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

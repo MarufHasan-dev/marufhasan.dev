@@ -2,24 +2,36 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
 
-// Zod schema for contact form validation
+const MAX_REQUEST_BYTES = 10_000;
+
+const allowedTurnstileHostnames = new Set(
+  (process.env.CONTACT_ALLOWED_HOSTNAMES ?? "marufhasan.dev,localhost,127.0.0.1")
+    .split(",")
+    .map((hostname) => hostname.trim().toLowerCase())
+    .filter(Boolean),
+);
+
+// Keep validation authoritative on the server. Trim before checking lengths so
+// whitespace cannot satisfy required-field or minimum-length checks.
 const contactSchema = z.object({
   name: z
     .string()
+    .trim()
     .min(2, "Name must be at least 2 characters")
     .max(100, "Name must be less than 100 characters")
-    .trim(),
+    .refine((value) => !/[\u0000-\u001f\u007f-\u009f]/.test(value), {
+      message: "Name contains invalid characters",
+    }),
   email: z
     .string()
-    .email("Please enter a valid email address")
-    .max(254, "Email must be less than 254 characters")
     .trim()
-    .toLowerCase(),
+    .max(254, "Email must be less than 254 characters")
+    .email("Please enter a valid email address"),
   message: z
     .string()
+    .trim()
     .min(10, "Message must be at least 10 characters")
-    .max(5000, "Message must be less than 5000 characters")
-    .trim(),
+    .max(5000, "Message must be less than 5000 characters"),
   turnstileToken: z
     .string()
     .min(1, "Complete the security check")
@@ -32,7 +44,6 @@ type ContactFormData = z.infer<typeof contactSchema>;
 async function verifyTurnstileToken(
   token: string,
   secret: string,
-  expectedHostname: string,
 ) {
   const response = await fetch(
     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
@@ -57,8 +68,50 @@ async function verifyTurnstileToken(
   return (
     result.success === true &&
     result.action === "contact" &&
-    result.hostname?.toLowerCase() === expectedHostname.toLowerCase()
+    typeof result.hostname === "string" &&
+    allowedTurnstileHostnames.has(result.hostname.toLowerCase())
   );
+}
+
+async function readJsonBody(request: NextRequest): Promise<unknown> {
+  const contentType = request.headers.get("content-type")?.split(";")[0].trim();
+  if (contentType !== "application/json") {
+    throw new TypeError("Expected application/json");
+  }
+
+  const contentLength = Number(request.headers.get("content-length"));
+  if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
+    throw new RangeError("Request body is too large");
+  }
+
+  if (!request.body) {
+    throw new TypeError("Request body is empty");
+  }
+
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    totalBytes += value.byteLength;
+    if (totalBytes > MAX_REQUEST_BYTES) {
+      await reader.cancel();
+      throw new RangeError("Request body is too large");
+    }
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(body));
 }
 
 // Create email transporter
@@ -247,13 +300,19 @@ function escapeHtml(text: string): string {
 
 export async function POST(request: NextRequest) {
   try {
-    // Parse JSON body
+    // Reject unexpected media types and cap bytes before parsing untrusted JSON.
     let body: unknown;
     try {
-      body = await request.json();
-    } catch {
+      body = await readJsonBody(request);
+    } catch (error) {
+      if (error instanceof RangeError) {
+        return NextResponse.json(
+          { error: "Request body is too large" },
+          { status: 413 },
+        );
+      }
       return NextResponse.json(
-        { error: "Invalid JSON in request body" },
+        { error: "Expected a valid JSON request body" },
         { status: 400 },
       );
     }
@@ -276,7 +335,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, turnstileToken } = result.data;
+    const { email, turnstileToken } = result.data;
 
     const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
     if (!turnstileSecret) {
@@ -292,7 +351,6 @@ export async function POST(request: NextRequest) {
       turnstileVerified = await verifyTurnstileToken(
         turnstileToken,
         turnstileSecret,
-        request.nextUrl.hostname,
       );
     } catch (error) {
       console.error("Turnstile verification is unavailable:", error);
@@ -329,16 +387,14 @@ export async function POST(request: NextRequest) {
       from: `"Portfolio Contact" <${process.env.MAIL_USERNAME}>`,
       to: "marufdev.contact@gmail.com",
       replyTo: email,
-      subject: `New Message from ${name} - Portfolio Contact`,
+      subject: "New portfolio contact form message",
       text: generateEmailText(result.data),
       html: generateEmailHTML(result.data),
     };
 
     await transporter.sendMail(mailOptions);
 
-    console.log("Contact form email sent:", {
-      name,
-      email,
+    console.log("Contact form email sent", {
       timestamp: new Date().toISOString(),
     });
 

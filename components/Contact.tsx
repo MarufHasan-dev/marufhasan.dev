@@ -95,24 +95,33 @@ export default function Contact() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
 
-    if (!formData.name.trim()) {
+    if (!name) {
       newErrors.name = "Name is required";
-    } else if (formData.name.trim().length < 2) {
+    } else if (name.length < 2) {
       newErrors.name = "Name must be at least 2 characters";
+    } else if (name.length > 100) {
+      newErrors.name = "Name must be less than 100 characters";
+    } else if (/[\u0000-\u001f\u007f-\u009f]/.test(name)) {
+      newErrors.name = "Name contains invalid characters";
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
+    if (!email) {
       newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
+    } else if (email.length > 254 || !emailRegex.test(email)) {
       newErrors.email = "Please enter a valid email address";
     }
 
-    if (!formData.message.trim()) {
+    if (!message) {
       newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
+    } else if (message.length < 10) {
       newErrors.message = "Message must be at least 10 characters";
+    } else if (message.length > 5000) {
+      newErrors.message = "Message must be less than 5000 characters";
     }
 
     setErrors(newErrors);
@@ -267,6 +276,8 @@ export default function Contact() {
                   type="text"
                   id="name"
                   name="name"
+                  autoComplete="name"
+                  maxLength={100}
                   value={formData.name}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all ${
@@ -299,6 +310,8 @@ export default function Contact() {
                   type="email"
                   id="email"
                   name="email"
+                  autoComplete="email"
+                  maxLength={254}
                   value={formData.email}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all ${
@@ -333,6 +346,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
+                  maxLength={5000}
                   className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all resize-none ${
                     errors.message ? "border-red-500" : "border-border"
                   }`}
@@ -388,7 +402,8 @@ export default function Contact() {
                       ? "bg-green-50 text-green-700 border border-green-200"
                       : "bg-red-50 text-red-700 border border-red-200"
                   }`}
-                  role="alert"
+                  role={status === "success" ? "status" : "alert"}
+                  aria-live={status === "success" ? "polite" : "assertive"}
                 >
                   {serverMessage}
                 </div>
