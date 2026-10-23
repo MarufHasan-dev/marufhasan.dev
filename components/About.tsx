@@ -1,16 +1,32 @@
 const skills = [
   {
     category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "PostgreSQL", "MongoDB"],
+    items: ["Node.js", "Express.js", "REST APIs"],
   },
-  { category: "Tools", items: ["Git", "Docker", "AWS", "Vercel"] },
   {
-    category: "Design",
-    items: ["Figma", "UI/UX", "Responsive Design", "Accessibility"],
+    category: "Database",
+    items: ["PostgreSQL", "Prisma ORM", "MongoDB"],
+  },
+  {
+    category: "Integrations & Infrastructure",
+    items: [
+      "Docker",
+      "Cloudflare",
+      "Google Cloud Platform",
+      "Vercel",
+      "AWS",
+      "Neon",
+      "Google Maps API",
+      "Contentful",
+    ],
+  },
+  {
+    category: "Additional Skills",
+    items: ["Git", "Figma"],
   },
 ];
 
@@ -38,7 +54,7 @@ export default function About() {
         </div>
 
         {/* Skills Grid */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skillGroup) => (
             <div key={skillGroup.category}>
               <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">

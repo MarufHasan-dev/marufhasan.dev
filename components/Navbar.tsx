@@ -77,7 +77,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="relative z-50 text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
+              className="relative z-50 cursor-pointer text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
               onClick={handleLinkClick}
             >
               Maruf Hasan
@@ -89,7 +89,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-secondary hover:text-primary transition-colors"
+                    className="cursor-pointer text-sm text-secondary hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-sm text-secondary hover:text-primary transition-colors"
+                  className="cursor-pointer text-sm text-secondary hover:text-primary transition-colors"
                 >
                   Blog
                 </Link>
@@ -108,7 +108,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="relative z-50 md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-primary rounded-full hover:bg-muted transition-colors"
+              className="relative z-50 md:hidden flex items-center justify-center w-10 h-10 -mr-2 cursor-pointer text-primary rounded-full hover:bg-muted transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -153,7 +153,7 @@ export default function Navbar() {
         aria-hidden={!isMobileMenuOpen}
       >
         <div
-          className={`absolute inset-0 bg-surface transition-opacity duration-500 ${
+          className={`absolute inset-0 cursor-pointer bg-surface transition-opacity duration-500 ${
             isMobileMenuOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={handleLinkClick}
@@ -178,7 +178,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="block py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
+                    className="block cursor-pointer py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                     onClick={handleLinkClick}
                   >
                     {link.label}
@@ -199,7 +199,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/blog"
-                  className="block py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
+                  className="block cursor-pointer py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                   onClick={handleLinkClick}
                 >
                   Blog
@@ -221,7 +221,7 @@ export default function Navbar() {
             <p className="text-sm text-secondary mb-2">Get in touch</p>
             <a
               href="mailto:marufdev.contact@gmail.com"
-              className="text-lg text-primary hover:text-accent transition-colors"
+              className="cursor-pointer text-lg text-primary hover:text-accent transition-colors"
             >
               marufdev.contact@gmail.com
             </a>

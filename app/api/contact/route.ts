@@ -20,9 +20,46 @@ const contactSchema = z.object({
     .min(10, "Message must be at least 10 characters")
     .max(5000, "Message must be less than 5000 characters")
     .trim(),
+  turnstileToken: z
+    .string()
+    .min(1, "Complete the security check")
+    .max(2048, "Invalid security token")
+    .trim(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
+
+async function verifyTurnstileToken(
+  token: string,
+  secret: string,
+  expectedHostname: string,
+) {
+  const response = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, response: token }),
+      signal: AbortSignal.timeout(10_000),
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(`Turnstile Siteverify returned ${response.status}`);
+  }
+
+  const result: {
+    success?: boolean;
+    action?: string;
+    hostname?: string;
+  } = await response.json();
+
+  return (
+    result.success === true &&
+    result.action === "contact" &&
+    result.hostname?.toLowerCase() === expectedHostname.toLowerCase()
+  );
+}
 
 // Create email transporter
 function createTransporter() {
@@ -239,7 +276,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email } = result.data;
+    const { name, email, turnstileToken } = result.data;
+
+    const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+    if (!turnstileSecret) {
+      console.error("Turnstile secret key is not configured");
+      return NextResponse.json(
+        { error: "Server configuration error. Please try again later." },
+        { status: 500 },
+      );
+    }
+
+    let turnstileVerified: boolean;
+    try {
+      turnstileVerified = await verifyTurnstileToken(
+        turnstileToken,
+        turnstileSecret,
+        request.nextUrl.hostname,
+      );
+    } catch (error) {
+      console.error("Turnstile verification is unavailable:", error);
+      return NextResponse.json(
+        { error: "Security verification is unavailable. Please try again." },
+        { status: 503 },
+      );
+    }
+
+    if (!turnstileVerified) {
+      return NextResponse.json(
+        { error: "Security verification failed. Please try again." },
+        { status: 403 },
+      );
+    }
 
     // Check if email credentials are configured
     if (

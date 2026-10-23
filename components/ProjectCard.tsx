@@ -3,7 +3,7 @@ import Image from "next/image";
 interface ProjectCardProps {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   tags: string[];
 }
 
@@ -14,17 +14,19 @@ export default function ProjectCard({
   tags,
 }: ProjectCardProps) {
   return (
-    <div className="group block rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <div className="group block cursor-pointer rounded-2xl bg-muted overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       {/* Project Image */}
-      <div className="relative aspect-16/10 overflow-hidden bg-border">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
+      {image && (
+        <div className="relative aspect-16/10 overflow-hidden bg-border">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      )}
 
       {/* Project Info */}
       <div className="p-6">

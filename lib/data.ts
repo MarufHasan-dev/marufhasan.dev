@@ -3,52 +3,54 @@
 export interface Project {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   tags: string[];
 }
 
 export const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Company Enrichment API",
     description:
-      "A modern, full-featured e-commerce platform with real-time inventory, secure payments, and an intuitive admin dashboard.",
-    image: "/projects/ecommerce.svg",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
+      "A production-ready REST API that turns company website domains into structured business intelligence, including company details, contacts, social profiles, detected technologies, and AI-assisted business classification. It uses resilient web scraping, intelligent caching, batch processing, and reliable fallback strategies.",
+    image: "/projects/company-enrichment-api.webp",
+    tags: [
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma",
+      "Google Gemini",
+      "Docker",
+    ],
   },
   {
-    title: "Task Management App",
+    title: "BezBroker — Real Estate Marketplace",
     description:
-      "Collaborative task management tool with real-time updates, drag-and-drop interface, and team workspaces.",
-    image: "/projects/taskapp.svg",
-    tags: ["React", "Node.js", "Socket.io", "MongoDB"],
+      "A full-stack real estate marketplace where users can list, discover, and save properties for sale or rent and connect directly with owners or brokers. Features include OTP authentication, property management, image and video uploads, interactive maps, favorites, and one-to-one messaging.",
+    image: "/projects/bezbroker.webp",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Prisma",
+      "Cloudflare",
+    ],
   },
   {
-    title: "Analytics Dashboard",
+    title: "YICN Roofing — CMS-Powered Blog",
     description:
-      "Data visualization dashboard featuring interactive charts, custom reports, and real-time metrics tracking.",
-    image: "/projects/analytics.svg",
-    tags: ["Next.js", "D3.js", "Python", "AWS"],
-  },
-  {
-    title: "Social Media App",
-    description:
-      "Feature-rich social platform with stories, messaging, and AI-powered content recommendations.",
-    image: "/projects/social.svg",
-    tags: ["React Native", "GraphQL", "Redis", "TensorFlow"],
-  },
-  {
-    title: "AI Writing Assistant",
-    description:
-      "AI-powered writing tool that helps users create, edit, and improve their content with smart suggestions.",
-    image: "/projects/ai-writer.svg",
-    tags: ["Next.js", "OpenAI", "Vercel AI SDK", "Prisma"],
-  },
-  {
-    title: "Fitness Tracker",
-    description:
-      "Comprehensive fitness app with workout tracking, nutrition logging, and personalized training plans.",
-    image: "/projects/fitness.svg",
-    tags: ["React Native", "Node.js", "PostgreSQL", "Charts"],
+      "A dynamic blog system for an existing roofing website, powered by Contentful. Includes featured and latest articles, dynamic post pages, rich-text and media rendering, FAQ sections, author information, and CMS-managed SEO metadata so the content team can publish without code changes.",
+    image: "/projects/yicn-roofing.webp",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Contentful",
+      "Tailwind CSS",
+      "shadcn/ui",
+    ],
   },
 ];
 

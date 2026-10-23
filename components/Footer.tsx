@@ -54,7 +54,7 @@ export default function Footer() {
           <div>
             <Link
               href="#home"
-              className="text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
+              className="cursor-pointer text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
             >
               Maruf Hasan
             </Link>
@@ -71,14 +71,14 @@ export default function Footer() {
                   {link.href.startsWith("/") ? (
                     <Link
                       href={link.href}
-                      className="text-sm text-secondary hover:text-primary transition-colors"
+                      className="cursor-pointer text-sm text-secondary hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      className="text-sm text-secondary hover:text-primary transition-colors"
+                      className="cursor-pointer text-sm text-secondary hover:text-primary transition-colors"
                     >
                       {link.label}
                     </a>
@@ -96,7 +96,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-secondary hover:text-primary hover:border-secondary transition-all"
+                className="w-10 h-10 rounded-full cursor-pointer bg-surface border border-border flex items-center justify-center text-secondary hover:text-primary hover:border-secondary transition-all"
                 aria-label={social.label}
               >
                 {social.icon}

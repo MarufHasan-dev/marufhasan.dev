@@ -1,7 +1,30 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useRef, useState } from "react";
+import type { FormEvent } from "react";
+import Script from "next/script";
 import Button from "./Button";
+
+interface TurnstileApi {
+  render: (
+    container: HTMLElement,
+    options: {
+      sitekey: string;
+      action: string;
+      theme: "light";
+      callback: (token: string) => void;
+      "error-callback": () => void;
+      "expired-callback": () => void;
+    },
+  ) => string;
+  reset: (widgetId?: string) => void;
+}
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
+}
 
 interface FormData {
   name: string;
@@ -18,6 +41,9 @@ interface FormErrors {
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 export default function Contact() {
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetIdRef = useRef<string | undefined>(undefined);
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -26,6 +52,46 @@ export default function Contact() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [serverMessage, setServerMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileError, setTurnstileError] = useState("");
+
+  const renderTurnstile = () => {
+    if (
+      !turnstileSiteKey ||
+      !window.turnstile ||
+      !turnstileContainerRef.current ||
+      turnstileWidgetIdRef.current
+    ) {
+      return;
+    }
+
+    turnstileWidgetIdRef.current = window.turnstile.render(
+      turnstileContainerRef.current,
+      {
+        sitekey: turnstileSiteKey,
+        action: "contact",
+        theme: "light",
+        callback: (token) => {
+          setTurnstileToken(token);
+          setTurnstileError("");
+        },
+        "error-callback": () => {
+          setTurnstileToken("");
+          setTurnstileError(
+            "Security check failed to load. Please refresh the page.",
+          );
+        },
+        "expired-callback": () => setTurnstileToken(""),
+      },
+    );
+  };
+
+  const resetTurnstile = () => {
+    setTurnstileToken("");
+    if (turnstileWidgetIdRef.current) {
+      window.turnstile?.reset(turnstileWidgetIdRef.current);
+    }
+  };
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -60,6 +126,14 @@ export default function Contact() {
       return;
     }
 
+    if (!turnstileToken) {
+      setStatus("error");
+      setServerMessage(
+        "Complete the security check before sending your message.",
+      );
+      return;
+    }
+
     setStatus("loading");
     setServerMessage("");
 
@@ -69,10 +143,11 @@ export default function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       });
 
       const data = await response.json();
+      resetTurnstile();
 
       if (response.ok) {
         setStatus("success");
@@ -85,6 +160,7 @@ export default function Contact() {
         );
       }
     } catch {
+      resetTurnstile();
       setStatus("error");
       setServerMessage(
         "Network error. Please check your connection and try again.",
@@ -140,7 +216,7 @@ export default function Contact() {
                   <p className="text-sm text-secondary">Email</p>
                   <a
                     href="mailto:marufdev.contact@gmail.com"
-                    className="text-primary hover:text-accent transition-colors"
+                    className="cursor-pointer text-primary hover:text-accent transition-colors"
                   >
                     marufdev.contact@gmail.com
                   </a>
@@ -277,6 +353,33 @@ export default function Contact() {
                 )}
               </div>
 
+              {/* Cloudflare Turnstile */}
+              {turnstileSiteKey ? (
+                <>
+                  <Script
+                    src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+                    strategy="afterInteractive"
+                    onReady={renderTurnstile}
+                    onError={() =>
+                      setTurnstileError(
+                        "Security check failed to load. Please refresh the page.",
+                      )
+                    }
+                  />
+                  <div ref={turnstileContainerRef} />
+                  {turnstileError && (
+                    <p className="text-sm text-red-500" role="alert">
+                      {turnstileError}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <p className="text-sm text-red-500" role="alert">
+                  Contact form verification is not configured. Please email me
+                  directly.
+                </p>
+              )}
+
               {/* Status Message */}
               {serverMessage && (
                 <div
@@ -296,7 +399,7 @@ export default function Contact() {
                 type="submit"
                 size="lg"
                 className="w-full"
-                disabled={status === "loading"}
+                disabled={status === "loading" || !turnstileToken}
               >
                 {status === "loading" ? (
                   <span className="flex items-center justify-center gap-2">

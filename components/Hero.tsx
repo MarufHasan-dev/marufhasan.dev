@@ -93,7 +93,7 @@ export default function Hero() {
         <div className="mt-16 md:mt-20 text-center animate-bounce-slow">
           <a
             href="#about"
-            className="inline-block text-secondary hover:text-primary transition-colors"
+            className="inline-block cursor-pointer text-secondary hover:text-primary transition-colors"
             aria-label="Scroll to about section"
           >
             <svg
