@@ -58,7 +58,7 @@ function generateEmailHTML(data: ContactFormData): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Contact Form Submission</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f7;">
+<body style="margin: 0; padding: 0; font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f7;">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f5f5f7; padding: 40px 20px;">
     <tr>
       <td align="center">

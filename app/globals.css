@@ -2,7 +2,7 @@
 
 /* ===== TAILWIND v4 THEME CONFIGURATION ===== */
 @theme {
-  /* Colors - Apple Design System */
+  /* Portfolio color palette */
   --color-primary: #1d1d1f;
   --color-secondary: #6e6e73;
   --color-accent: #0a84ff;
@@ -12,8 +12,7 @@
 
   /* Typography */
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+    system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Spacing */
   --spacing-section: clamp(4rem, 10vw, 8rem);
