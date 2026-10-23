@@ -195,12 +195,11 @@ export default function Contact() {
           {/* Left Column - Text */}
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">
-              Get In Touch
+              Let&apos;s talk
             </h2>
             <p className="text-lg md:text-xl text-secondary leading-relaxed mb-8">
-              Have a project in mind or just want to say hello? I&apos;d love to
-              hear from you. Fill out the form and I&apos;ll get back to you as
-              soon as possible.
+              I&apos;m open to full-time and remote roles. Send me a note about
+              the role or the team and I&apos;ll get back to you.
             </p>
 
             {/* Contact Info */}
@@ -255,10 +254,35 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-secondary">Location</p>
-                  <p className="text-primary">Dhaka, Bangladesh</p>
+                  <p className="text-primary">Dhaka, Bangladesh (UTC+6)</p>
                 </div>
               </div>
             </div>
+
+            <nav className="mt-8 flex flex-wrap gap-x-5 gap-y-2" aria-label="Direct contact links">
+              <a
+                href="https://www.linkedin.com/in/maruf-hasan-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm text-sm font-medium text-primary underline decoration-border underline-offset-4 transition-colors hover:text-accent focus-visible:outline-offset-4"
+              >
+                LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <a
+                href="https://github.com/MarufHasan-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm text-sm font-medium text-primary underline decoration-border underline-offset-4 transition-colors hover:text-accent focus-visible:outline-offset-4"
+              >
+                GitHub<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <a
+                href="mailto:marufdev.contact@gmail.com"
+                className="rounded-sm text-sm font-medium text-primary underline decoration-border underline-offset-4 transition-colors hover:text-accent focus-visible:outline-offset-4"
+              >
+                Email
+              </a>
+            </nav>
           </div>
 
           {/* Right Column - Form */}
@@ -276,6 +300,7 @@ export default function Contact() {
                   type="text"
                   id="name"
                   name="name"
+                  required
                   autoComplete="name"
                   maxLength={100}
                   value={formData.name}
@@ -310,6 +335,7 @@ export default function Contact() {
                   type="email"
                   id="email"
                   name="email"
+                  required
                   autoComplete="email"
                   maxLength={254}
                   value={formData.email}
@@ -343,6 +369,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  required
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
@@ -350,7 +377,7 @@ export default function Contact() {
                   className={`w-full px-4 py-3 rounded-xl bg-muted border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent transition-all resize-none ${
                     errors.message ? "border-red-500" : "border-border"
                   }`}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about the role or team..."
                   aria-describedby={
                     errors.message ? "message-error" : undefined
                   }

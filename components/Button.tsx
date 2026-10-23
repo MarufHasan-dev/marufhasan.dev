@@ -29,7 +29,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   secondary:
     "bg-transparent border border-border text-primary hover:bg-muted active:bg-border",
   ghost:
-    "bg-transparent text-accent hover:text-accent/80 active:text-accent/60",
+    "bg-transparent text-[#0066cc] hover:text-[#0055b3] active:text-[#004a9f]",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

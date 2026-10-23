@@ -1,32 +1,36 @@
 const skills = [
   {
-    category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"],
-  },
-  {
-    category: "Backend",
-    items: ["Node.js", "Express.js", "REST APIs"],
-  },
-  {
-    category: "Database",
-    items: ["PostgreSQL", "Prisma ORM", "MongoDB"],
-  },
-  {
-    category: "Integrations & Infrastructure",
+    category: "Strong",
     items: [
-      "Docker",
-      "Cloudflare",
-      "Google Cloud Platform",
-      "Vercel",
-      "AWS",
-      "Neon",
-      "Google Maps API",
-      "Contentful",
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Next.js (App Router)",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+      "Tailwind CSS",
+      "REST API design",
     ],
   },
   {
-    category: "Additional Skills",
-    items: ["Git", "Figma"],
+    category: "Working knowledge",
+    items: [
+      "Docker",
+      "Nginx",
+      "Google Cloud Platform",
+      "Vercel",
+      "Cloudflare (Images, Stream, Turnstile)",
+      "Redis (Upstash)",
+      "Neon",
+      "Contentful",
+      "Git",
+    ],
+  },
+  {
+    category: "Familiar",
+    items: ["Google Maps API", "Figma"],
   },
 ];
 
@@ -34,35 +38,36 @@ export default function About() {
   return (
     <section id="about" className="py-section bg-muted">
       <div className="mx-auto max-w-300 px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">
+        <div className="max-w-4xl">
+          <h2 className="mb-6 text-3xl font-semibold tracking-tight text-primary sm:text-4xl md:text-5xl">
             About Me
           </h2>
-          <p className="text-lg md:text-xl text-secondary leading-relaxed mb-6">
-            I&apos;m a full-stack web developer passionate about creating
-            beautiful, functional, and user-centered digital experiences. With a
-            strong foundation in both frontend and backend technologies, I bring
-            ideas to life through clean code and thoughtful design.
+          <p className="mb-5 text-lg leading-relaxed text-secondary md:text-xl">
+            I&apos;m Maruf, a full-stack developer from Dhaka. Since August 2025
+            I&apos;ve gone from building a CMS-driven blog for a roofing company
+            to shipping a paid API, a real-estate marketplace, and a studio
+            platform on my own.
           </p>
-          <p className="text-lg md:text-xl text-secondary leading-relaxed">
-            When I&apos;m not coding, you&apos;ll find me exploring new
-            technologies, contributing to open-source projects, or sharing
-            knowledge through writing and mentoring. I believe in continuous
-            learning and building products that make a difference.
+          <p className="text-lg leading-relaxed text-secondary md:text-xl">
+            I care about the unglamorous parts of production software: caching
+            strategy, abuse protection, tests, and documentation that can&apos;t
+            drift out of date. I&apos;m looking for a full-time or remote role
+            where I can own features end to end on a TypeScript/Node team.
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_0.65fr] lg:gap-10">
           {skills.map((skillGroup) => (
             <div key={skillGroup.category}>
-              <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
                 {skillGroup.category}
               </h3>
-              <ul className="space-y-3">
+              <ul className="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill) => (
-                  <li key={skill} className="text-secondary text-base">
+                  <li
+                    key={skill}
+                    className="max-w-full rounded-full border border-border bg-surface px-3 py-2 text-sm leading-5 text-primary"
+                  >
                     {skill}
                   </li>
                 ))}
@@ -71,34 +76,41 @@ export default function About() {
           ))}
         </div>
 
-        {/* Stats/Highlights */}
-        <div className="mt-16 pt-16 border-t border-border">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="mt-14 border-t border-border pt-10 sm:mt-16 sm:pt-12">
+          <dl className="grid grid-cols-2 gap-x-5 gap-y-8 text-center md:grid-cols-4 md:gap-8">
             <div>
-              <p className="text-4xl md:text-5xl font-semibold text-primary">
-                5+
-              </p>
-              <p className="mt-2 text-sm text-secondary">Years Experience</p>
+              <dt className="text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+                4
+              </dt>
+              <dd className="mx-auto mt-2 max-w-40 text-xs leading-5 text-secondary sm:text-sm">
+                Production projects shipped
+              </dd>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-semibold text-primary">
-                50+
-              </p>
-              <p className="mt-2 text-sm text-secondary">Projects Completed</p>
+              <dt className="text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+                5
+              </dt>
+              <dd className="mx-auto mt-2 max-w-40 text-xs leading-5 text-secondary sm:text-sm">
+                Merged open-source PRs
+              </dd>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-semibold text-primary">
-                30+
-              </p>
-              <p className="mt-2 text-sm text-secondary">Happy Clients</p>
+              <dt className="text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+                63
+              </dt>
+              <dd className="mx-auto mt-2 max-w-40 text-xs leading-5 text-secondary sm:text-sm">
+                Automated tests (Orbitally.tech)
+              </dd>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-semibold text-primary">
-                10+
-              </p>
-              <p className="mt-2 text-sm text-secondary">Open Source</p>
+              <dt className="whitespace-nowrap text-2xl font-semibold tracking-tight text-primary sm:text-3xl">
+                100/100/100
+              </dt>
+              <dd className="mx-auto mt-2 max-w-48 text-xs leading-5 text-secondary sm:text-sm">
+                Lighthouse: SEO, accessibility, best practices (Orbitally.tech)
+              </dd>
             </div>
-          </div>
+          </dl>
         </div>
       </div>
     </section>

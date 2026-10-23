@@ -89,7 +89,7 @@ export default function OpenSource() {
               className="flex h-full flex-col rounded-[1.75rem] border border-border bg-muted p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(29,29,31,0.08)] sm:p-8"
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0066cc]">
                   Featured · {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-xs font-medium text-secondary">
@@ -164,7 +164,7 @@ export default function OpenSource() {
                   href={contribution.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex w-fit shrink-0 items-center gap-2 text-sm font-medium text-accent hover:underline focus-visible:underline"
+                  className="inline-flex w-fit shrink-0 items-center gap-2 text-sm font-medium text-[#0066cc] hover:underline focus-visible:underline"
                 >
                   View PR
                   <span aria-hidden="true">↗</span>
@@ -183,7 +183,7 @@ export default function OpenSource() {
             href={openSourceProject.mergedPullRequestsUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-accent hover:underline focus-visible:underline"
+            className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-[#0066cc] hover:underline focus-visible:underline"
           >
             View all my merged pull requests
             <span aria-hidden="true">↗</span>

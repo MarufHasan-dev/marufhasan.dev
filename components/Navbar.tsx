@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/#about", label: "About" },
   { href: "/#projects", label: "Projects" },
   { href: "/#open-source", label: "Open source" },
-  { href: "/#services", label: "Services" },
+  { href: "/#services", label: "Freelance" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -181,6 +181,7 @@ export default function Navbar() {
                     href={link.href}
                     className="block cursor-pointer py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                     onClick={handleLinkClick}
+                    tabIndex={isMobileMenuOpen ? 0 : -1}
                   >
                     {link.label}
                   </Link>
@@ -202,6 +203,7 @@ export default function Navbar() {
                   href="/blog"
                   className="block cursor-pointer py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
                   onClick={handleLinkClick}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
                 >
                   Blog
                 </Link>
@@ -223,6 +225,7 @@ export default function Navbar() {
             <a
               href="mailto:marufdev.contact@gmail.com"
               className="cursor-pointer text-lg text-primary hover:text-accent transition-colors"
+              tabIndex={isMobileMenuOpen ? 0 : -1}
             >
               marufdev.contact@gmail.com
             </a>

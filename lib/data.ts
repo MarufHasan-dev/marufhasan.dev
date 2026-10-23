@@ -3,7 +3,9 @@
 export interface Project {
   title: string;
   category: string;
-  description: string;
+  role: string;
+  problem: string;
+  highlights: string[];
   image?: string;
   tags: string[];
   links?: { label: string; url: string }[];
@@ -13,8 +15,15 @@ export const projects: Project[] = [
   {
     title: "Orbitally.tech",
     category: "Studio platform & API product",
-    description:
-      "A production-ready studio website and developer platform built from the ground up. Features a custom animated WebGL hero, responsive service pages, a live API playground, schema-generated developer documentation, pricing pages, and security-hardened server endpoints. Includes Cloudflare Turnstile verification, Redis-backed rate limiting, contact-data masking, and automated tests.",
+    role: "Solo · 2026",
+    problem:
+      "A studio site has to prove real engineering ability, and a product page has to let visitors try a paid API without exposing it.",
+    highlights: [
+      "Secured live API playground: server-side proxy, same-origin checks, action-bound Cloudflare Turnstile, four Redis sliding-window rate limits with an in-memory fallback, secret redaction, and masked contact data.",
+      "87-field API reference generated from one typed schema, with tests that fail when the docs drift.",
+      "Legal pages rendered from typed content with billing-provider variants; a contact form that fails closed instead of faking success.",
+      "63 automated tests; 100/100/100 Lighthouse on the homepage and product page.",
+    ],
     image: "/projects/orbitally.webp",
     tags: [
       "Next.js",
@@ -36,8 +45,15 @@ export const projects: Project[] = [
   {
     title: "BezBroker",
     category: "Real estate marketplace",
-    description:
-      "A full-stack real estate marketplace where users can list, discover, and save properties for sale or rent and connect directly with owners or brokers. Features include OTP authentication, property management, image and video uploads, interactive maps, favorites, and one-to-one messaging.",
+    role: "Freelance client project · Dec 2025",
+    problem:
+      "Property owners and brokers needed a marketplace to list homes for sale or rent, and buyers needed a way to contact them after signing in.",
+    highlights: [
+      "Async video pipeline: TUS resumable upload, Cloudflare Stream transcoding, HMAC-SHA256-verified webhook, adaptive HLS/DASH playback.",
+      "Email and SMS OTP login (Brevo, Twilio) with database-backed sessions and HTTP-only cookies.",
+      "10-model PostgreSQL schema (Prisma) with composite constraints and ~40 indexes; search API with cursor and offset pagination.",
+      "One-to-one messaging with read receipts, online presence, and per-user mute and soft delete.",
+    ],
     image: "/projects/bezbroker.webp",
     tags: [
       "Next.js",
@@ -52,8 +68,15 @@ export const projects: Project[] = [
   {
     title: "Company Enrichment API",
     category: "Developer API",
-    description:
-      "A production-ready REST API that turns company website domains into structured business intelligence, including company details, contacts, social profiles, detected technologies, and AI-assisted business classification. It uses resilient web scraping, intelligent caching, batch processing, and reliable fallback strategies.",
+    role: "Solo · 2026",
+    problem:
+      "Sales and CRM tools need reliable company facts from just a domain, but scrapers are fragile and data vendors are expensive.",
+    highlights: [
+      "Domain in, structured profile out: company details, public contacts, 11 social platforms, 60+ tech-detection rules, and a transparent 0-100 confidence score.",
+      "Deterministic parsing first, Gemini structured output second, so the API still works if the LLM is down.",
+      "Resilience layer: in-flight request coalescing, two-tier caching with per-error negative TTLs, multi-URL fetching with a Firecrawl fallback, async writes with a dead-letter table.",
+      "Deployed with Docker and Nginx on GCP, backed by Neon Postgres tuned to scale to zero, and sold on RapidAPI.",
+    ],
     image: "/projects/company-enrichment-api.webp",
     tags: [
       "TypeScript",
@@ -67,9 +90,16 @@ export const projects: Project[] = [
   },
   {
     title: "YICN Roofing",
-    category: "Contentful-powered blog",
-    description:
-      "A dynamic blog system for an existing roofing website, powered by Contentful. Includes featured and latest articles, dynamic post pages, rich-text and media rendering, FAQ sections, author information, and CMS-managed SEO metadata so the content team can publish without code changes.",
+    category: "CMS-driven roofing blog",
+    role: "Team project · Aug 2025 · I owned the blog system",
+    problem:
+      "The owner wanted to publish posts and control SEO without a developer.",
+    highlights: [
+      "Contentful integration with ISR listing page, featured article, and statically generated post pages.",
+      "Custom rich-text renderer: tables, embedded video and audio, auto-embedded YouTube links.",
+      "CMS-driven SEO: title, description, keywords, and OG image editable per post and wired into generateMetadata.",
+      "FAQ accordion, author block, and optional embedded map.",
+    ],
     image: "/projects/yicn-roofing.webp",
     tags: [
       "Next.js",
@@ -79,6 +109,7 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "shadcn/ui",
     ],
+    links: [{ label: "Live site", url: "https://yicnroofing.com" }],
   },
 ];
 

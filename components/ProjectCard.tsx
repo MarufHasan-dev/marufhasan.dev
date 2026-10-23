@@ -12,23 +12,20 @@ export default function ProjectCard({
   index,
   featured = false,
 }: ProjectCardProps) {
-  const visibleTags = project.tags.slice(0, featured ? 4 : 3);
-  const extraTagCount = project.tags.length - visibleTags.length;
-
   return (
     <article
       className={
         featured
-          ? "group grid overflow-hidden rounded-[2rem] bg-[#111318] text-white shadow-sm lg:grid-cols-[0.9fr_1.1fr]"
-          : "group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-black/[0.06] bg-white shadow-[0_2px_12px_rgba(29,29,31,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(29,29,31,0.1)]"
+          ? "group grid overflow-hidden rounded-[2rem] bg-[#111318] text-white shadow-sm lg:grid-cols-[0.82fr_1.18fr]"
+          : "group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[0_2px_12px_rgba(29,29,31,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(29,29,31,0.1)]"
       }
     >
       {project.image && (
         <div
           className={`relative overflow-hidden ${
             featured
-              ? "aspect-[8/5] bg-[#171a23] lg:order-2 lg:aspect-auto lg:min-h-[32rem]"
-              : "aspect-[1.55/1] bg-[#f0f0f2]"
+              ? "aspect-[1.5/1] bg-[#171a23] lg:aspect-auto lg:min-h-full"
+              : "aspect-[1.7/1] bg-[#f0f0f2]"
           }`}
         >
           <Image
@@ -40,8 +37,8 @@ export default function ProjectCard({
             }`}
             sizes={
               featured
-                ? "(max-width: 1024px) 100vw, 55vw"
-                : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                ? "(max-width: 1024px) 100vw, 40vw"
+                : "(max-width: 768px) 100vw, 50vw"
             }
           />
         </div>
@@ -50,66 +47,89 @@ export default function ProjectCard({
       <div
         className={`flex flex-1 flex-col ${
           featured
-            ? "p-6 sm:p-8 lg:order-1 lg:justify-center lg:p-10 xl:p-14"
+            ? "p-6 sm:p-8 lg:p-9 xl:p-11"
             : "p-6 sm:p-7"
         }`}
       >
-        <p
-          className={`mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] ${
-            featured ? "text-white/55" : "text-secondary"
-          }`}
-        >
-          <span className={featured ? "text-[#82b6ff]" : "text-accent"}>
-            {String(index).padStart(2, "0")}
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <p
+            className={`min-w-0 text-xs font-semibold uppercase tracking-[0.14em] ${
+              featured ? "text-white/55" : "text-secondary"
+            }`}
+          >
+            <span className={featured ? "text-[#82b6ff]" : "text-[#0066cc]"}>
+              {String(index).padStart(2, "0")}
+            </span>
+            <span aria-hidden="true"> / </span>
+            <span>{project.category}</span>
+          </p>
+          <span
+            className={`max-w-full rounded-full border px-3 py-1.5 text-[0.68rem] font-medium leading-4 ${
+              featured
+                ? "border-white/15 bg-white/[0.05] text-white/75"
+                : "border-border bg-muted text-secondary"
+            }`}
+          >
+            {project.role}
           </span>
-          <span aria-hidden="true">/</span>
-          {project.category}
-        </p>
+        </div>
 
         <h3
           className={`font-semibold tracking-tight ${
             featured
-              ? "mb-4 text-3xl text-white sm:text-4xl xl:text-[2.75rem]"
-              : "mb-3 text-2xl text-primary"
+              ? "mb-4 text-3xl text-white sm:text-4xl"
+              : "mb-4 text-2xl text-primary"
           }`}
         >
           {project.title}
         </h3>
 
-        <p
-          className={`leading-relaxed ${
-            featured
-              ? "mb-7 max-w-xl text-base text-white/65 sm:text-lg sm:leading-8"
-              : "mb-6 line-clamp-3 text-[0.95rem] text-secondary"
+        <div
+          className={`mb-5 border-l-2 pl-4 ${
+            featured ? "border-[#82b6ff]/60" : "border-accent/50"
           }`}
         >
-          {project.description}
-        </p>
+          <p
+            className={`mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] ${
+              featured ? "text-white/45" : "text-secondary"
+            }`}
+          >
+            Problem
+          </p>
+          <p
+            className={`text-sm leading-6 ${
+              featured ? "text-white/75" : "text-secondary"
+            }`}
+          >
+            {project.problem}
+          </p>
+        </div>
+
+        <ul
+          className={`mb-6 list-disc space-y-2.5 pl-4 text-sm leading-[1.6] marker:text-[#0066cc] ${
+            featured ? "text-white/75 marker:text-[#82b6ff]" : "text-secondary"
+          }`}
+        >
+          {project.highlights.map((highlight) => (
+            <li key={highlight} className="pl-1">
+              {highlight}
+            </li>
+          ))}
+        </ul>
 
         <div className="mb-7 flex flex-wrap gap-2">
-          {visibleTags.map((tag) => (
+          {project.tags.map((tag) => (
             <span
               key={tag}
               className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
                 featured
                   ? "border-white/15 bg-white/[0.04] text-white/75"
-                  : "border-black/[0.07] bg-[#f8f8fa] text-secondary"
+                  : "border-border bg-muted text-secondary"
               }`}
             >
               {tag}
             </span>
           ))}
-          {extraTagCount > 0 && (
-            <span
-              className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
-                featured
-                  ? "border-white/15 text-white/55"
-                  : "border-black/[0.07] text-secondary"
-              }`}
-            >
-              +{extraTagCount}
-            </span>
-          )}
         </div>
 
         {project.links && project.links.length > 0 && (
@@ -129,7 +149,7 @@ export default function ProjectCard({
                     ? "bg-white text-primary hover:bg-white/85"
                     : featured
                       ? "border border-white/20 text-white hover:bg-white/10"
-                      : "text-accent hover:bg-accent/5"
+                      : "text-[#0066cc] hover:bg-accent/5"
                 }`}
               >
                 {link.label}
