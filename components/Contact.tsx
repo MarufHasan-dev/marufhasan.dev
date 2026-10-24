@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import Script from "next/script";
 import Button from "./Button";
@@ -18,6 +18,7 @@ interface TurnstileApi {
     },
   ) => string;
   reset: (widgetId?: string) => void;
+  remove: (widgetId: string) => void;
 }
 
 declare global {
@@ -55,7 +56,7 @@ export default function Contact() {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileError, setTurnstileError] = useState("");
 
-  const renderTurnstile = () => {
+  const renderTurnstile = useCallback(() => {
     if (
       !turnstileSiteKey ||
       !window.turnstile ||
@@ -84,7 +85,19 @@ export default function Contact() {
         "expired-callback": () => setTurnstileToken(""),
       },
     );
-  };
+  }, [turnstileSiteKey]);
+
+  useEffect(() => {
+    renderTurnstile();
+
+    return () => {
+      const widgetId = turnstileWidgetIdRef.current;
+      if (widgetId) {
+        window.turnstile?.remove(widgetId);
+        turnstileWidgetIdRef.current = undefined;
+      }
+    };
+  }, [renderTurnstile]);
 
   const resetTurnstile = () => {
     setTurnstileToken("");
