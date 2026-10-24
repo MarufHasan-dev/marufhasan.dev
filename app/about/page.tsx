@@ -358,17 +358,39 @@ export default function AboutPage() {
               <ol className="relative space-y-0 border-l border-border pl-6 sm:pl-8">
                 <li className="relative pb-8 last:pb-0">
                   <span
+                    className="absolute -left-[1.9rem] top-1.5 h-3 w-3 rounded-full border-2 border-border bg-surface sm:-left-[2.4rem]"
+                    aria-hidden="true"
+                  />
+                  <time className="text-sm font-semibold text-[#0066cc]">
+                    Ongoing
+                  </time>
+                  <p className="mt-1 leading-7 text-secondary">
+                    <Link href="/#open-source" className={inlineLink}>
+                      Odysseus (open source)
+                    </Link>
+                    : 5 merged pull requests.
+                  </p>
+                </li>
+                <li className="relative pb-8 last:pb-0">
+                  <span
                     className="absolute -left-[1.9rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-surface sm:-left-[2.4rem]"
                     aria-hidden="true"
                   />
                   <time
-                    dateTime="2021"
+                    dateTime="2026-10"
                     className="text-sm font-semibold text-[#0066cc]"
                   >
-                    2021
+                    Oct 2026
                   </time>
                   <p className="mt-1 leading-7 text-secondary">
-                    Started building for the web.
+                    <Link
+                      href="/#project-orbitally-tech"
+                      className={inlineLink}
+                    >
+                      Orbitally.tech
+                    </Link>
+                    : a studio platform with a secured live API playground, an
+                    87-field generated API reference, and 63 tests.
                   </p>
                 </li>
                 <li className="relative pb-8 last:pb-0">
@@ -377,17 +399,19 @@ export default function AboutPage() {
                     aria-hidden="true"
                   />
                   <time
-                    dateTime="2025-08"
+                    dateTime="2026"
                     className="text-sm font-semibold text-[#0066cc]"
                   >
-                    Aug 2025
+                    2026
                   </time>
                   <p className="mt-1 leading-7 text-secondary">
-                    <Link href="/#project-yicn-roofing" className={inlineLink}>
-                      YICN Roofing
+                    <Link
+                      href="/#project-company-enrichment-api"
+                      className={inlineLink}
+                    >
+                      Company Enrichment API
                     </Link>
-                    : Contentful-powered blog system with CMS-managed SEO (team
-                    project; I owned the blog).
+                    : built solo, deployed on Google Cloud, sold on RapidAPI.
                   </p>
                 </li>
                 <li className="relative pb-8 last:pb-0">
@@ -415,41 +439,17 @@ export default function AboutPage() {
                     aria-hidden="true"
                   />
                   <time
-                    dateTime="2026"
+                    dateTime="2025-08"
                     className="text-sm font-semibold text-[#0066cc]"
                   >
-                    2026
+                    Aug 2025
                   </time>
                   <p className="mt-1 leading-7 text-secondary">
-                    <Link
-                      href="/#project-company-enrichment-api"
-                      className={inlineLink}
-                    >
-                      Company Enrichment API
+                    <Link href="/#project-yicn-roofing" className={inlineLink}>
+                      YICN Roofing
                     </Link>
-                    : built solo, deployed on Google Cloud, sold on RapidAPI.
-                  </p>
-                </li>
-                <li className="relative pb-8 last:pb-0">
-                  <span
-                    className="absolute -left-[1.9rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-surface sm:-left-[2.4rem]"
-                    aria-hidden="true"
-                  />
-                  <time
-                    dateTime="2026-10"
-                    className="text-sm font-semibold text-[#0066cc]"
-                  >
-                    Oct 2026
-                  </time>
-                  <p className="mt-1 leading-7 text-secondary">
-                    <Link
-                      href="/#project-orbitally-tech"
-                      className={inlineLink}
-                    >
-                      Orbitally.tech
-                    </Link>
-                    : a studio platform with a secured live API playground, an
-                    87-field generated API reference, and 63 tests.
+                    : Contentful-powered blog system with CMS-managed SEO (team
+                    project; I owned the blog).
                   </p>
                 </li>
                 <li className="relative">
@@ -457,14 +457,14 @@ export default function AboutPage() {
                     className="absolute -left-[1.9rem] top-1.5 h-3 w-3 rounded-full border-2 border-border bg-surface sm:-left-[2.4rem]"
                     aria-hidden="true"
                   />
-                  <time className="text-sm font-semibold text-[#0066cc]">
-                    Ongoing
+                  <time
+                    dateTime="2021"
+                    className="text-sm font-semibold text-[#0066cc]"
+                  >
+                    2021
                   </time>
                   <p className="mt-1 leading-7 text-secondary">
-                    <Link href="/#open-source" className={inlineLink}>
-                      Odysseus (open source)
-                    </Link>
-                    : 5 merged pull requests.
+                    Started building for the web.
                   </p>
                 </li>
               </ol>
