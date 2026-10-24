@@ -14,6 +14,10 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <article
+      id={`project-${project.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")}`}
       className={
         featured
           ? "group grid overflow-hidden rounded-[2rem] bg-[#111318] text-white shadow-sm lg:grid-cols-[0.82fr_1.18fr]"

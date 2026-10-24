@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#open-source", label: "Open source" },
-  { href: "#services", label: "Freelance" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#open-source", label: "Open source" },
+  { href: "/#services", label: "Freelance" },
+  { href: "/#contact", label: "Contact" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Logo & Copyright */}
           <div>
             <Link
-              href="#home"
+              href="/"
               className="cursor-pointer text-xl font-semibold text-primary hover:opacity-70 transition-opacity"
             >
               Maruf Hasan

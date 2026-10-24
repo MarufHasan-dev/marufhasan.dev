@@ -80,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="antialiased">
         <script
           type="application/ld+json"
@@ -92,21 +92,30 @@ export default function RootLayout({
               name: "Maruf Hasan",
               url: "https://marufhasan.dev",
               jobTitle: "Full-Stack Web Developer",
+              description:
+                "Maruf Hasan is a full-stack web developer based in Dhaka, Bangladesh, who has been building for the web since 2021.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Dhaka",
+                addressCountry: "BD",
+              },
               knowsAbout: [
-                "Web Development",
-                "Frontend Development",
-                "Backend Development",
+                "TypeScript",
+                "JavaScript",
                 "React",
                 "Next.js",
-                "TypeScript",
                 "Node.js",
+                "PostgreSQL",
+                "Prisma",
+                "REST API design",
+                "Web development",
               ],
               sameAs: [
                 "https://github.com/MarufHasan-dev",
                 "https://www.linkedin.com/in/maruf-hasan-dev/",
                 "https://x.com/marufhasan_dev",
               ],
-              image: "https://marufhasan.dev/og.png",
+              image: "https://marufhasan.dev/profile.png",
             }),
           }}
         />
