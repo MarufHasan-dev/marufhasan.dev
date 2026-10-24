@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
+import FAQAccordionItem from "@/components/FAQAccordionItem";
 
 const title = "Maruf Hasan | Best Web Developer in Bangladesh";
 const description =
@@ -706,20 +707,11 @@ export default function AboutPage() {
               </div>
               <div className="divide-y divide-border border-y border-border">
                 {faqs.map((faq) => (
-                  <details key={faq.question} className="group py-5">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-sm text-base font-semibold leading-7 text-primary marker:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:text-lg [&::-webkit-details-marker]:hidden">
-                      {faq.question}
-                      <span
-                        className="shrink-0 text-2xl font-normal text-secondary transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
-                        aria-hidden="true"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="max-w-3xl pt-4 pr-8 leading-7 text-secondary">
-                      {faq.answer}
-                    </p>
-                  </details>
+                  <FAQAccordionItem
+                    key={faq.question}
+                    question={faq.question}
+                    answer={faq.answer}
+                  />
                 ))}
               </div>
             </div>

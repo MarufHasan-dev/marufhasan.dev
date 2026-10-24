@@ -2,6 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
+import type { Variants } from "motion/react";
+
+const menuVariants: Variants = {
+  closed: {},
+  open: { transition: { delayChildren: 0.08, staggerChildren: 0.07 } },
+};
+
+const menuItemVariants: Variants = {
+  closed: { opacity: 0, y: 20 },
+  open: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+};
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -115,27 +127,36 @@ export default function Navbar() {
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
-              <div className="relative w-5 h-5">
-                <span
-                  className={`absolute left-0 block w-5 h-0.5 bg-current transform transition-all duration-300 ease-in-out ${
-                    isMobileMenuOpen
-                      ? "top-1/2 -translate-y-1/2 rotate-45"
-                      : "top-1"
-                  }`}
+              <div className="relative h-5 w-5">
+                <motion.span
+                  className="absolute left-0 top-1/2 block h-0.5 w-5 bg-current"
+                  style={{ marginTop: -1 }}
+                  initial={false}
+                  animate={{
+                    y: isMobileMenuOpen ? 0 : -6,
+                    rotate: isMobileMenuOpen ? 45 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
-                <span
-                  className={`absolute left-0 top-1/2 -translate-y-1/2 block w-5 h-0.5 bg-current transition-all duration-300 ease-in-out ${
-                    isMobileMenuOpen
-                      ? "opacity-0 scale-0"
-                      : "opacity-100 scale-100"
-                  }`}
+                <motion.span
+                  className="absolute left-0 top-1/2 block h-0.5 w-5 bg-current"
+                  style={{ marginTop: -1 }}
+                  initial={false}
+                  animate={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                    scaleX: isMobileMenuOpen ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
                 />
-                <span
-                  className={`absolute left-0 block w-5 h-0.5 bg-current transform transition-all duration-300 ease-in-out ${
-                    isMobileMenuOpen
-                      ? "top-1/2 -translate-y-1/2 -rotate-45"
-                      : "bottom-1"
-                  }`}
+                <motion.span
+                  className="absolute left-0 top-1/2 block h-0.5 w-5 bg-current"
+                  style={{ marginTop: -1 }}
+                  initial={false}
+                  animate={{
+                    y: isMobileMenuOpen ? 0 : 6,
+                    rotate: isMobileMenuOpen ? -45 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
               </div>
             </button>
@@ -144,94 +165,81 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div
+      <motion.div
         id="mobile-menu"
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ease-in-out ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        className="fixed inset-0 z-40 md:hidden"
+        initial={false}
+        animate={isMobileMenuOpen ? "open" : "closed"}
+        variants={{
+          closed: { opacity: 0, transition: { duration: 0.25 } },
+          open: {
+            opacity: 1,
+            transition: { duration: 0.35, ease: "easeInOut" },
+          },
+        }}
+        style={{ pointerEvents: isMobileMenuOpen ? "auto" : "none" }}
         aria-hidden={!isMobileMenuOpen}
       >
         <div
-          className={`absolute inset-0 cursor-pointer bg-surface transition-opacity duration-500 ${
-            isMobileMenuOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className="absolute inset-0 cursor-pointer bg-surface"
           onClick={handleLinkClick}
         />
 
-        <div className="relative h-full flex flex-col justify-center px-6">
+        <div className="relative flex h-full flex-col justify-center px-6">
           <nav aria-label="Mobile navigation">
-            <ul className="flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <li
-                  key={link.href}
-                  className={`transform transition-all duration-500 ease-out ${
-                    isMobileMenuOpen
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-8 opacity-0"
-                  }`}
-                  style={{
-                    transitionDelay: isMobileMenuOpen
-                      ? `${index * 75}ms`
-                      : "0ms",
-                  }}
-                >
+            <motion.ul
+              className="flex flex-col gap-2"
+              variants={menuVariants}
+              initial={false}
+              animate={isMobileMenuOpen ? "open" : "closed"}
+            >
+              {navLinks.map((link) => (
+                <motion.li key={link.href} variants={menuItemVariants}>
                   <Link
                     href={link.href}
-                    className="block cursor-pointer py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
+                    className="block cursor-pointer py-3 text-4xl font-semibold text-primary transition-colors hover:text-accent sm:text-5xl"
                     onClick={handleLinkClick}
                     tabIndex={isMobileMenuOpen ? 0 : -1}
                   >
                     {link.label}
                   </Link>
-                </li>
+                </motion.li>
               ))}
-              <li
-                className={`transform transition-all duration-500 ease-out ${
-                  isMobileMenuOpen
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: isMobileMenuOpen
-                    ? `${navLinks.length * 75}ms`
-                    : "0ms",
-                }}
-              >
+              <motion.li variants={menuItemVariants}>
                 <Link
                   href="/blog"
-                  className="block cursor-pointer py-3 text-4xl sm:text-5xl font-semibold text-primary hover:text-accent transition-colors"
+                  className="block cursor-pointer py-3 text-4xl font-semibold text-primary transition-colors hover:text-accent sm:text-5xl"
                   onClick={handleLinkClick}
                   tabIndex={isMobileMenuOpen ? 0 : -1}
                 >
                   Blog
                 </Link>
-              </li>
-            </ul>
+              </motion.li>
+            </motion.ul>
           </nav>
 
-          <div
-            className={`absolute bottom-12 left-6 right-6 transform transition-all duration-500 ease-out ${
-              isMobileMenuOpen
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-            style={{
-              transitionDelay: isMobileMenuOpen ? "400ms" : "0ms",
+          <motion.div
+            className="absolute bottom-12 left-6 right-6"
+            variants={menuItemVariants}
+            initial={false}
+            animate={isMobileMenuOpen ? "open" : "closed"}
+            transition={{
+              duration: 0.35,
+              delay: isMobileMenuOpen ? 0.4 : 0,
+              ease: "easeOut",
             }}
           >
-            <p className="text-sm text-secondary mb-2">Get in touch</p>
+            <p className="mb-2 text-sm text-secondary">Get in touch</p>
             <a
               href="mailto:marufdev.contact@gmail.com"
-              className="cursor-pointer text-lg text-primary hover:text-accent transition-colors"
+              className="cursor-pointer text-lg text-primary transition-colors hover:text-accent"
               tabIndex={isMobileMenuOpen ? 0 : -1}
             >
               marufdev.contact@gmail.com
             </a>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

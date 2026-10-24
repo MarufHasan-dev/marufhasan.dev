@@ -1,5 +1,22 @@
 import Image from "next/image";
+import * as motion from "motion/react-client";
+import type { Variants } from "motion/react";
 import type { Project } from "@/lib/data";
+
+const cardVariants: Variants = {
+  rest: { y: 0 },
+  hover: { y: -4, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
+const imageVariants: Variants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.025, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+const featuredCardVariants: Variants = {
+  rest: { y: 0 },
+  hover: { y: 0 },
+};
 
 interface ProjectCardProps {
   project: Project;
@@ -13,7 +30,7 @@ export default function ProjectCard({
   featured = false,
 }: ProjectCardProps) {
   return (
-    <article
+    <motion.article
       id={`project-${project.title
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
@@ -21,8 +38,11 @@ export default function ProjectCard({
       className={
         featured
           ? "group grid overflow-hidden rounded-[2rem] bg-[#111318] text-white shadow-sm lg:grid-cols-[0.82fr_1.18fr]"
-          : "group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[0_2px_12px_rgba(29,29,31,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(29,29,31,0.1)]"
+          : "group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[0_2px_12px_rgba(29,29,31,0.04)] transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(29,29,31,0.1)]"
       }
+      variants={featured ? featuredCardVariants : cardVariants}
+      initial="rest"
+      whileHover="hover"
     >
       {project.image && (
         <div
@@ -32,19 +52,23 @@ export default function ProjectCard({
               : "aspect-[1.7/1] bg-[#f0f0f2]"
           }`}
         >
-          <Image
-            src={project.image}
-            alt={`${project.title} website preview`}
-            fill
-            className={`object-cover object-top transition-transform duration-700 group-hover:scale-[1.025] ${
-              featured ? "lg:object-contain" : ""
-            }`}
-            sizes={
-              featured
-                ? "(max-width: 1024px) 100vw, 40vw"
-                : "(max-width: 768px) 100vw, 50vw"
-            }
-          />
+          <motion.div
+            className="absolute inset-0"
+            variants={imageVariants}
+            initial="rest"
+          >
+            <Image
+              src={project.image}
+              alt={`${project.title} website preview`}
+              fill
+              className={`object-cover object-top ${featured ? "lg:object-contain" : ""}`}
+              sizes={
+                featured
+                  ? "(max-width: 1024px) 100vw, 40vw"
+                  : "(max-width: 768px) 100vw, 50vw"
+              }
+            />
+          </motion.div>
         </div>
       )}
 
@@ -164,6 +188,6 @@ export default function ProjectCard({
           </div>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }

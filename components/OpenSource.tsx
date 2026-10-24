@@ -2,6 +2,13 @@ import {
   openSourceContributions,
   openSourceProject,
 } from "@/lib/data";
+import * as motion from "motion/react-client";
+import type { Variants } from "motion/react";
+
+const contributionArrowVariants: Variants = {
+  rest: { x: 0 },
+  hover: { x: 4, transition: { duration: 0.2, ease: "easeOut" } },
+};
 
 const featuredContributions = openSourceContributions.slice(0, 2);
 const additionalContributions = openSourceContributions.slice(2);
@@ -34,11 +41,14 @@ export default function OpenSource() {
             </p>
           </div>
 
-          <a
+          <motion.a
             href={openSourceProject.url}
             target="_blank"
             rel="noreferrer"
             className="group flex items-center justify-between gap-5 rounded-[1.75rem] border border-border bg-muted p-6 transition-colors hover:border-accent/30 hover:bg-[#f1f1f4] sm:p-7"
+            initial="rest"
+            whileHover="hover"
+            whileFocus="hover"
           >
             <span className="flex items-center gap-4">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-surface text-primary">
@@ -63,14 +73,15 @@ export default function OpenSource() {
                 </span>
               </span>
             </span>
-            <span
-              className="shrink-0 text-xl text-secondary transition-transform group-hover:translate-x-1 group-hover:text-accent"
+            <motion.span
+              className="shrink-0 text-xl text-secondary transition-colors group-hover:text-accent"
+              variants={contributionArrowVariants}
               aria-hidden="true"
             >
               ↗
-            </span>
+            </motion.span>
             <span className="sr-only"> (opens in a new tab)</span>
-          </a>
+          </motion.a>
         </div>
 
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
@@ -84,9 +95,11 @@ export default function OpenSource() {
 
         <div className="grid gap-4 lg:grid-cols-2">
           {featuredContributions.map((contribution, index) => (
-            <article
+            <motion.article
               key={contribution.number}
-              className="flex h-full flex-col rounded-[1.75rem] border border-border bg-muted p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(29,29,31,0.08)] sm:p-8"
+              className="flex h-full flex-col rounded-[1.75rem] border border-border bg-muted p-6 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(29,29,31,0.08)] sm:p-8"
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0066cc]">
@@ -131,7 +144,7 @@ export default function OpenSource() {
                 <span aria-hidden="true">↗</span>
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
-            </article>
+            </motion.article>
           ))}
         </div>
 

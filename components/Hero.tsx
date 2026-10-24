@@ -1,5 +1,21 @@
 import Image from "next/image";
+import * as motion from "motion/react-client";
+import type { Variants } from "motion/react";
 import Button from "./Button";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: "easeOut" },
+  },
+};
+
+const staggerCopy: Variants = {
+  hidden: {},
+  visible: { transition: { delayChildren: 0.08, staggerChildren: 0.12 } },
+};
 
 export default function Hero() {
   return (
@@ -9,7 +25,12 @@ export default function Hero() {
     >
       <div className="mx-auto max-w-300 w-full px-6 lg:px-8">
         <div className="flex flex-col items-center gap-9 lg:flex-row lg:gap-16">
-          <div className="shrink-0 animate-fade-in">
+          <motion.div
+            className="shrink-0"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div className="relative">
               <div className="absolute -inset-3 rounded-4xl bg-accent/10 blur-2xl" />
               <div className="relative h-40 w-40 overflow-hidden rounded-3xl shadow-xl ring-1 ring-border sm:h-52 sm:w-52 lg:h-72 lg:w-72">
@@ -23,21 +44,38 @@ export default function Hero() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="min-w-0 flex-1 text-center lg:text-left">
-            <p className="mb-2 text-sm font-semibold tracking-wide text-primary animate-fade-in">
+          <motion.div
+            className="min-w-0 flex-1 text-center lg:text-left"
+            variants={staggerCopy}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.p
+              variants={fadeUp}
+              className="mb-2 text-sm font-semibold tracking-wide text-primary"
+            >
               Maruf Hasan
-            </p>
-            <p className="mb-4 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-secondary sm:text-xs sm:tracking-[0.18em] md:text-sm">
+            </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="mb-4 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-secondary sm:text-xs sm:tracking-[0.18em] md:text-sm"
+            >
               Full-Stack Developer · Next.js · TypeScript · Node.js
-            </p>
-            <h1 className="mx-auto mb-5 max-w-4xl text-[2.55rem] font-semibold leading-[1.06] tracking-[-0.045em] text-primary animate-fade-in-up sm:text-5xl md:text-6xl lg:mx-0 lg:text-7xl">
+            </motion.p>
+            <motion.h1
+              variants={fadeUp}
+              className="mx-auto mb-5 max-w-4xl text-[2.55rem] font-semibold leading-[1.06] tracking-[-0.045em] text-primary sm:text-5xl md:text-6xl lg:mx-0 lg:text-7xl"
+            >
               I build full-stack products that are secure, fast, and live in
               production.
-            </h1>
+            </motion.h1>
 
-            <div className="mb-5 flex justify-center lg:justify-start">
+            <motion.div
+              variants={fadeUp}
+              className="mb-5 flex justify-center lg:justify-start"
+            >
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3.5 py-2 text-xs font-medium text-primary sm:text-sm">
                 <span
                   className="h-2 w-2 rounded-full bg-emerald-500"
@@ -45,16 +83,22 @@ export default function Hero() {
                 />
                 Open to full-time &amp; remote roles
               </span>
-            </div>
+            </motion.div>
 
-            <p className="mx-auto mb-7 max-w-2xl text-base leading-7 text-secondary animate-fade-in-up-delay sm:text-lg sm:leading-8 lg:mx-0">
+            <motion.p
+              variants={fadeUp}
+              className="mx-auto mb-7 max-w-2xl text-base leading-7 text-secondary sm:text-lg sm:leading-8 lg:mx-0"
+            >
               Full-stack developer in Dhaka working with Next.js, TypeScript,
               and Node.js. I&apos;ve launched a paid API on RapidAPI, built a
               real-estate marketplace with video pipelines and messaging, and
               shipped merged PRs to an open-source AI workspace.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col items-stretch justify-center gap-3 animate-fade-in-up-delay-2 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start"
+            >
               <Button as="a" href="#projects" size="lg">
                 View projects
               </Button>
@@ -76,8 +120,8 @@ export default function Hero() {
               >
                 Email me
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         <p className="mx-auto mt-10 max-w-4xl text-center text-xs leading-6 text-secondary sm:mt-12 sm:text-sm">
@@ -86,7 +130,11 @@ export default function Hero() {
           Lighthouse <span aria-hidden="true">·</span> 5 merged open-source PRs
         </p>
 
-        <div className="mt-8 text-center animate-bounce-slow">
+        <motion.div
+          className="mt-8 text-center"
+          animate={{ y: [0, 7, 0] }}
+          transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity }}
+        >
           <a
             href="#about"
             className="inline-flex rounded-full p-2 text-secondary transition-colors hover:text-primary"
@@ -107,7 +155,7 @@ export default function Hero() {
               />
             </svg>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
