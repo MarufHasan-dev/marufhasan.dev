@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 import Script from "next/script";
 import Button from "./Button";
 
@@ -41,6 +42,23 @@ interface FormErrors {
 }
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
+
+const contactRevealVariants: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: { delayChildren: 0.08, staggerChildren: 0.12 },
+  },
+};
+
+const contactColumnVariants: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.48, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function Contact() {
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
@@ -203,12 +221,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-section bg-surface">
+    <motion.section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="py-section bg-surface"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.08, margin: "0px 0px -48px 0px" }}
+      variants={contactRevealVariants}
+    >
       <div className="mx-auto max-w-300 px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - Text */}
-          <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">
+          <motion.div variants={contactColumnVariants}>
+            <h2 id="contact-heading" className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight mb-6">
               Let&apos;s talk
             </h2>
             <p className="text-lg md:text-xl text-secondary leading-relaxed mb-8">
@@ -297,10 +323,10 @@ export default function Contact() {
                 Email
               </a>
             </nav>
-          </div>
+          </motion.div>
 
           {/* Right Column - Form */}
-          <div>
+          <motion.div variants={contactColumnVariants}>
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               {/* Name Field */}
               <div>
@@ -489,9 +515,9 @@ export default function Contact() {
                 )}
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
