@@ -29,6 +29,11 @@ html {
     scroll-behavior: auto;
   }
 
+  [data-motion-blur],
+  [data-motion-blur] [style*="blur("] {
+    filter: none !important;
+  }
+
   *,
   *::before,
   *::after {

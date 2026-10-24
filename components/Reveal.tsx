@@ -3,19 +3,21 @@ import type { Variants } from "motion/react";
 import type { ReactNode } from "react";
 
 const revealVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 16, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const staggerVariants: Variants = {
-  hidden: { opacity: 0, y: 8 },
+  hidden: { opacity: 0, y: 8, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
       duration: 0.42,
       ease: [0.22, 1, 0.36, 1],
@@ -26,10 +28,11 @@ const staggerVariants: Variants = {
 };
 
 export const revealItemVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 12, filter: "blur(7px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
   },
 };
@@ -48,6 +51,7 @@ export default function Reveal({
   return (
     <motion.div
       className={className}
+      data-motion-blur=""
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.08, margin: "0px 0px -48px 0px" }}
@@ -69,7 +73,11 @@ export function RevealItem({
   children,
   className,
 }: RevealItemProps) {
-  const props = { className, variants: revealItemVariants };
+  const props = {
+    className,
+    "data-motion-blur": "",
+    variants: revealItemVariants,
+  };
 
   if (as === "article") {
     return <motion.article {...props}>{children}</motion.article>;

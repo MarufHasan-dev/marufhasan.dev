@@ -4,10 +4,11 @@ import type { Variants } from "motion/react";
 import Button from "./Button";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 16, filter: "blur(7px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: { duration: 0.55, ease: "easeOut" },
   },
 };
@@ -21,14 +22,15 @@ export default function Hero() {
   return (
     <section
       id="home"
+      data-motion-blur=""
       className="flex min-h-screen items-center overflow-hidden bg-surface pb-16 pt-20 sm:pb-20"
     >
       <div className="mx-auto max-w-300 w-full px-6 lg:px-8">
         <div className="flex flex-col items-center gap-9 lg:flex-row lg:gap-16">
           <motion.div
             className="shrink-0"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="relative">

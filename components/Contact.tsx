@@ -52,10 +52,11 @@ const contactRevealVariants: Variants = {
 };
 
 const contactColumnVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { opacity: 0, y: 14, filter: "blur(7px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: { duration: 0.48, ease: [0.22, 1, 0.36, 1] },
   },
 };
@@ -223,6 +224,7 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
+      data-motion-blur=""
       aria-labelledby="contact-heading"
       className="py-section bg-surface"
       initial="hidden"
