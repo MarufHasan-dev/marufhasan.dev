@@ -80,7 +80,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="mx-auto mt-10 max-w-4xl text-center text-xs leading-6 text-secondary sm:mt-12 sm:text-sm lg:text-left">
+        <p className="mx-auto mt-10 max-w-4xl text-center text-xs leading-6 text-secondary sm:mt-12 sm:text-sm">
           Paid API live on RapidAPI <span aria-hidden="true">·</span> 63
           automated tests <span aria-hidden="true">·</span> 100/100/100
           Lighthouse <span aria-hidden="true">·</span> 5 merged open-source PRs

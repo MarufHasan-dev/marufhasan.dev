@@ -62,8 +62,11 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "PostgreSQL",
       "Prisma",
-      "Cloudflare",
+      "Cloudflare Images",
+      "Cloudflare Stream",
+      "Google Maps API",
     ],
+    links: [{ label: "Live site", url: "https://bezbroker.com/" }],
   },
   {
     title: "Company Enrichment API",
@@ -84,8 +87,15 @@ export const projects: Project[] = [
       "Express.js",
       "PostgreSQL",
       "Prisma",
-      "Google Gemini",
       "Docker",
+      "Nginx",
+      "Google Cloud Platform",
+    ],
+    links: [
+      {
+        label: "Product page",
+        url: "https://orbitally.tech/products/company-enrichment-api",
+      },
     ],
   },
   {
