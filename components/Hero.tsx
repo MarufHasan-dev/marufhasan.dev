@@ -11,10 +11,10 @@ export default function Hero() {
         <div className="flex flex-col items-center gap-9 lg:flex-row lg:gap-16">
           <div className="shrink-0 animate-fade-in">
             <div className="relative">
-              <div className="absolute -inset-3 rounded-[32px] bg-accent/10 blur-2xl" />
-              <div className="relative h-40 w-40 overflow-hidden rounded-[24px] shadow-xl ring-1 ring-border sm:h-52 sm:w-52 lg:h-72 lg:w-72">
+              <div className="absolute -inset-3 rounded-4xl bg-accent/10 blur-2xl" />
+              <div className="relative h-40 w-40 overflow-hidden rounded-3xl shadow-xl ring-1 ring-border sm:h-52 sm:w-52 lg:h-72 lg:w-72">
                 <Image
-                  src="/profile.png"
+                  src="/maruf-hasan-full-stack-web-developer.png"
                   alt="Maruf Hasan — Full-Stack Web Developer"
                   fill
                   priority
@@ -33,12 +33,16 @@ export default function Hero() {
               Full-Stack Developer · Next.js · TypeScript · Node.js
             </p>
             <h1 className="mx-auto mb-5 max-w-4xl text-[2.55rem] font-semibold leading-[1.06] tracking-[-0.045em] text-primary animate-fade-in-up sm:text-5xl md:text-6xl lg:mx-0 lg:text-7xl">
-              I build full-stack products that are secure, fast, and live in production.
+              I build full-stack products that are secure, fast, and live in
+              production.
             </h1>
 
             <div className="mb-5 flex justify-center lg:justify-start">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3.5 py-2 text-xs font-medium text-primary sm:text-sm">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span
+                  className="h-2 w-2 rounded-full bg-emerald-500"
+                  aria-hidden="true"
+                />
                 Open to full-time &amp; remote roles
               </span>
             </div>
@@ -77,7 +81,9 @@ export default function Hero() {
         </div>
 
         <p className="mx-auto mt-10 max-w-4xl text-center text-xs leading-6 text-secondary sm:mt-12 sm:text-sm lg:text-left">
-          Paid API live on RapidAPI <span aria-hidden="true">·</span> 63 automated tests <span aria-hidden="true">·</span> 100/100/100 Lighthouse <span aria-hidden="true">·</span> 5 merged open-source PRs
+          Paid API live on RapidAPI <span aria-hidden="true">·</span> 63
+          automated tests <span aria-hidden="true">·</span> 100/100/100
+          Lighthouse <span aria-hidden="true">·</span> 5 merged open-source PRs
         </p>
 
         <div className="mt-8 text-center animate-bounce-slow">

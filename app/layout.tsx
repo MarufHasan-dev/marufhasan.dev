@@ -115,7 +115,8 @@ export default function RootLayout({
                 "https://www.linkedin.com/in/maruf-hasan-dev/",
                 "https://x.com/marufhasan_dev",
               ],
-              image: "https://marufhasan.dev/profile.png",
+              image:
+                "https://marufhasan.dev/maruf-hasan-full-stack-web-developer.png",
             }),
           }}
         />

@@ -106,7 +106,7 @@ export default function About() {
                 63
               </dt>
               <dd className="mx-auto mt-2 max-w-40 text-xs leading-5 text-secondary sm:text-sm">
-                Automated tests (Orbitally.tech)
+                Automated tests
               </dd>
             </div>
             <div>

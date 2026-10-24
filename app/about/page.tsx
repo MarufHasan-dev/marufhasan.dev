@@ -63,7 +63,7 @@ const profilePageJsonLd = {
     name: "Maruf Hasan",
     jobTitle: "Full-Stack Web Developer",
     url: "https://marufhasan.dev",
-    image: "https://marufhasan.dev/profile.png",
+    image: "https://marufhasan.dev/maruf-hasan-full-stack-web-developer.png",
     description:
       "Maruf Hasan is a full-stack web developer based in Dhaka, Bangladesh, who has been building for the web since 2021.",
     address: {
@@ -112,7 +112,7 @@ const breadcrumbJsonLd = {
 const stats = [
   { value: "2021", label: "Building for the web since" },
   { value: "4", label: "Production projects shipped" },
-  { value: "63", label: "Automated tests (Orbitally.tech)" },
+  { value: "63", label: "Automated tests" },
   { value: "5", label: "Merged open-source PRs" },
 ];
 
@@ -291,7 +291,7 @@ export default function AboutPage() {
               <div className="order-1 mx-auto w-48 sm:w-60 lg:order-2 lg:w-full lg:max-w-[22rem]">
                 <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-border bg-muted shadow-[0_24px_70px_rgba(29,29,31,0.12)]">
                   <Image
-                    src="/profile.png"
+                    src="/maruf-hasan-full-stack-web-developer.png"
                     alt="Maruf Hasan, full-stack web developer in Dhaka, Bangladesh"
                     fill
                     priority
@@ -321,8 +321,8 @@ export default function AboutPage() {
                 <p>
                   I started building for the web in 2021 and never really
                   stopped. These days I work across the whole stack: the
-                  interface, the API behind it, the database underneath, and
-                  the deployment that keeps it running.
+                  interface, the API behind it, the database underneath, and the
+                  deployment that keeps it running.
                 </p>
                 <p>
                   Lately that means a paid company-data API sold on RapidAPI, a
@@ -415,8 +415,8 @@ export default function AboutPage() {
                     <Link href="/#project-yicn-roofing" className={inlineLink}>
                       YICN Roofing
                     </Link>
-                    : Contentful-powered blog system with CMS-managed SEO
-                    (team project; I owned the blog).
+                    : Contentful-powered blog system with CMS-managed SEO (team
+                    project; I owned the blog).
                   </p>
                 </li>
                 <li className="relative pb-8 last:pb-0">
@@ -682,7 +682,8 @@ export default function AboutPage() {
                     rel="noreferrer"
                     className={inlineLink}
                   >
-                    All my merged pull requests <span aria-hidden="true">↗</span>
+                    All my merged pull requests{" "}
+                    <span aria-hidden="true">↗</span>
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </div>
@@ -717,10 +718,7 @@ export default function AboutPage() {
           </Reveal>
         </section>
 
-        <section
-          aria-labelledby="faq-heading"
-          className="bg-muted py-section"
-        >
+        <section aria-labelledby="faq-heading" className="bg-muted py-section">
           <Reveal>
             <div
               className={containerClass(
