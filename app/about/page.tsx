@@ -6,9 +6,9 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
 
-const title = "Maruf Hasan | Best Web Developer in Bangladesh (Allegedly)";
+const title = "Maruf Hasan | Best Web Developer in Bangladesh";
 const description =
-  "Maruf Hasan: full-stack web developer in Dhaka, building for the web since 2021. Self-proclaimed best web developer and programmer in Bangladesh. Open to hire.";
+  "Maruf Hasan: full-stack web developer in Dhaka, building for the web since 2021. Best web developer and programmer in Bangladesh. Open to hire.";
 const imageUrl = "https://marufhasan.dev/about/opengraph-image";
 
 export const metadata: Metadata = {
@@ -57,37 +57,8 @@ const profilePageJsonLd = {
   "@id": "https://marufhasan.dev/about#profilepage",
   url: "https://marufhasan.dev/about",
   name: "About Maruf Hasan",
-  mainEntity: {
-    "@type": "Person",
-    "@id": "https://marufhasan.dev/#person",
-    name: "Maruf Hasan",
-    jobTitle: "Full-Stack Web Developer",
-    url: "https://marufhasan.dev",
-    image: "https://marufhasan.dev/maruf-hasan-full-stack-web-developer.png",
-    description:
-      "Maruf Hasan is a full-stack web developer based in Dhaka, Bangladesh, who has been building for the web since 2021.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Dhaka",
-      addressCountry: "BD",
-    },
-    sameAs: [
-      "https://github.com/MarufHasan-dev",
-      "https://www.linkedin.com/in/maruf-hasan-dev/",
-      "https://x.com/marufhasan_dev",
-    ],
-    knowsAbout: [
-      "TypeScript",
-      "JavaScript",
-      "React",
-      "Next.js",
-      "Node.js",
-      "PostgreSQL",
-      "Prisma",
-      "REST API design",
-      "Web development",
-    ],
-  },
+  dateModified: "2026-10-24",
+  mainEntity: { "@id": "https://marufhasan.dev/#person" },
 };
 
 const breadcrumbJsonLd = {
@@ -262,7 +233,7 @@ export default function AboutPage() {
 
                 <div className="mt-6 flex flex-wrap justify-center gap-2.5 lg:justify-start">
                   <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent/5 px-3.5 py-2 text-sm font-medium text-primary">
-                    Self-proclaimed best web developer in Bangladesh
+                    The best web developer in Bangladesh
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3.5 py-2 text-sm font-medium text-primary">
                     <span
